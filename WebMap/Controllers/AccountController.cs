@@ -155,7 +155,7 @@ namespace WebMap.Controllers
                 if (ModelState.IsValid)
                 {
 
-                    var user = new TeamLeader { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password , LockoutEndDateUtc=DateTime.UtcNow};
+                    var user = new TeamLeader { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -180,7 +180,7 @@ namespace WebMap.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new TeamMember { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password ,LockoutEndDateUtc=DateTime.UtcNow};
+                    var user = new TeamMember { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {

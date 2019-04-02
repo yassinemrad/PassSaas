@@ -55,7 +55,7 @@ namespace WebMap.Controllers
             {
                 username.Add(item.Key);
                 toDoDP.Add(new DataPoint(item.Value.ToArray()[0].Key.ToString(), item.Value.ToArray()[0].Value));
-                doingDP.Add(new DataPoint(item.Value.ToArray()[1].Key.ToString(), item.Value.ToArray()[1].Value));
+                doingDP.Add(new DataPoint(item.Key, item.Value.ToArray()[1].Value));
                 doneDP.Add(new DataPoint(item.Key, item.Value.ToArray()[2].Value));
             }
             ViewBag.NameList = JsonConvert.SerializeObject(username);
