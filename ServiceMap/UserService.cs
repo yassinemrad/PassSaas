@@ -26,8 +26,8 @@ namespace ServiceMap
             foreach (mois item in Enum.GetValues(typeof(mois)) )
             {
              //   var o = GetMany(t => (int)item == (t.dateEntree.Month)).Count();
-              //  int s = GetMany(t => (int)item == (t.LockoutEndDateUtc.Value.Month)).Count();
-              //  dicuser.Add(item.ToString(), s);
+                int s = GetMany(t => (int)item == (t.LockoutEndDateUtc.Value.Month)).Count();
+                dicuser.Add(item.ToString(), s);
             }
             return dicuser;
         }
