@@ -17,8 +17,8 @@ namespace WebMap.Hubs
 
         public void Connect(string userName)
         {
-           
 
+            var id = "1";
 
 
             if (ConnectedUsers.Count(x => x.ConnectionId == id) == 0)
