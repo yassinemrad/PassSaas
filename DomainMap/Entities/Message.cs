@@ -17,6 +17,6 @@ namespace DomainMap.Entities
         public DateTime timeSend { get; set; }
         public int read { get; set; }
         public User sender { get; set; }
-        public User reciver { get; set; }
+        public User reciverr { get; set; }
     }
 }
