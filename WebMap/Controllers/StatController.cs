@@ -6,13 +6,14 @@ using System.Linq;
 
 using System.Web.Mvc;
 using ServiceMap;
+using DomainMap.Entities;
 
 namespace WebMap.Controllers
 {
     public class StatController : Controller
     {
         ITasksService taskService = new TasksService();
-      //  IProjetService projectService = new ProjetService();
+        IProjetService projectService = new ProjetService();
         IUserService userservice = new UserService();
      //   ImessageService mesgService = new messageService();
         
@@ -55,7 +56,7 @@ namespace WebMap.Controllers
             {
                 username.Add(item.Key);
                 toDoDP.Add(new DataPoint(item.Value.ToArray()[0].Key.ToString(), item.Value.ToArray()[0].Value));
-                doingDP.Add(new DataPoint(item.Key, item.Value.ToArray()[1].Value));
+                doingDP.Add(new DataPoint(item.Value.ToArray()[1].Key, item.Value.ToArray()[1].Value));
                 doneDP.Add(new DataPoint(item.Key, item.Value.ToArray()[2].Value));
             }
             ViewBag.NameList = JsonConvert.SerializeObject(username);
@@ -86,12 +87,12 @@ namespace WebMap.Controllers
         public ActionResult categparprojet()
         {
             List<DataPoint> dataPoints = new List<DataPoint>();
-        //    dataPoints.Add(new DataPoint(Cathegory.Banking.ToString(),projectService.categoriebank() ));
-          //  dataPoints.Add(new DataPoint(Cathegory.Commercial.ToString(), projectService.categcountcommer()));
-            //dataPoints.Add(new DataPoint(Cathegory.Education.ToString(), projectService.categcounteduc()));
-            //dataPoints.Add(new DataPoint(Cathegory.Medical.ToString(), projectService.categcountmedic()));
-          //  dataPoints.Add(new DataPoint(Cathegory.Statistic.ToString(), projectService.categcountsc()));
-            //dataPoints.Add(new DataPoint(Cathegory.Autre.ToString(), projectService.categcountautre()));
+            dataPoints.Add(new DataPoint(Cathegory.Banking.ToString(),projectService.categoriebank() ));
+            dataPoints.Add(new DataPoint(Cathegory.Commercial.ToString(), projectService.categcountcommer()));
+            dataPoints.Add(new DataPoint(Cathegory.Education.ToString(), projectService.categcounteduc()));
+            dataPoints.Add(new DataPoint(Cathegory.Medical.ToString(), projectService.categcountmedic()));
+            dataPoints.Add(new DataPoint(Cathegory.Statistic.ToString(), projectService.categcountsc()));
+            dataPoints.Add(new DataPoint(Cathegory.Autre.ToString(), projectService.categcountautre()));
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
@@ -103,45 +104,46 @@ namespace WebMap.Controllers
         public ActionResult progressproject(int id = 1)
         {
             
-           // List<ProjetViewModel> listP = mapi();
+            List<ProjetModels> listP = mapi();
             List<DataPoint> dataPoints = new List<DataPoint>();
-            //dataPoints.Add(new DataPoint(Etat.Todo.ToString(), etatService.EtatProgresstodo(id)));
-           // dataPoints.Add(new DataPoint(Etat.Doing.ToString(), etatService.EtatProgresdoing(id)));
-           // dataPoints.Add(new DataPoint(Etat.done.ToString(), etatService.EtatProgressdone(id)));
+            dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.ToDo.ToString(), taskService.EtatProgresstodo(id)));
+            dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.Doing.ToString(), taskService.EtatProgresdoing(id)));
+            dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.Done.ToString(), taskService.EtatProgressdone(id)));
            
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
-         //   ViewBag.ListProjet = listP;
+            ViewBag.ListProjet = listP;
           
 
                 return View();
 
         }
-      //  public List<ProjetViewModel> mapi()
-        //{
-          //  List<ProjetViewModel> lists = new List<ProjetViewModel>();
-            //foreach (var item in projectService.GetAll())
-           // {
-             //   ProjetViewModel dvm = new ProjetViewModel();
-         //       dvm.id = item.id;
-           //     dvm.name = item.name;
+        public List<ProjetModels> mapi()
+        {
+           List<ProjetModels> lists = new List<ProjetModels>();
+            foreach (var item in projectService.GetAll())
+            {
+                ProjetModels dvm = new ProjetModels();
+                dvm.id = item.id;
+                dvm.name = item.name;
               
-             //   lists.Add(dvm);
+                lists.Add(dvm);
 
-         //   }
-           // return lists;
-       // }
+            }
+            return lists;
+        }
         public ActionResult usercountperyear()
         {
             List<DataPoint> dataPoints = new List<DataPoint>();
             Dictionary<String, int> userdic = new Dictionary<String, int>();
-            //  List<projet> projet = projectService.listproj();
-            //foreach (var item in collection)
-            //{
+           //   List<Projet> projet = projectService.listproj();
+            
+           //foreach (var item in collection)
+           //{
 
-            //}
-            userdic = userservice.userdate();
+           //}
+           userdic = userservice.userdate();
             foreach (var element in userdic)
             {
                 dataPoints.Add(new DataPoint(element.Key.ToString(), element.Value));
