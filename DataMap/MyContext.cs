@@ -35,6 +35,7 @@ namespace DataMap
         public DbSet<Notification> notification { get; set; }
         public DbSet<Projet> projet { get; set; }
         public DbSet<Tasks> tasks { get; set; }
+        public DbSet<reclamation> reclamation { get; set; }
 
 
 

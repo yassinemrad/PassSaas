@@ -2,36 +2,62 @@
 
 <html>
 <head>
-   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="Dashboard">
-  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>Dashio - Bootstrap Admin Template</title>
 
-  <!-- Favicons -->
-  <link href="~/Content/MyTemplate/img/favicon.png" rel="icon">
-  <link href="~/Content/MyTemplate/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="~/Content/MyTemplate/img/favicon.png" rel="icon">
+    <link href="~/Content/MyTemplate/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Bootstrap core CSS -->
-  <link href="~/Content/MyTemplate/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!--external css-->
-  <link href="~/Content/MyTemplate/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="~/Content/MyTemplate/css/zabuto_calendar.css">
-  <link rel="stylesheet" type="text/css" href="~/Content/MyTemplate/lib/gritter/css/jquery.gritter.css">
-  <!-- Custom styles for this template -->
-  <link href="~/Content/MyTemplate/css/style.css" rel="stylesheet">
-  <link href="~/Content/MyTemplate/css/style-responsive.css" rel="stylesheet">
-  <script src="lib/chart-master/Chart.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/MyTemplate/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--external css-->
+    <link href="~/Content/MyTemplate/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/MyTemplate/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/MyTemplate/lib/gritter/css/jquery.gritter.css">
+    <!-- Custom styles for this template -->
+    <link href="~/Content/MyTemplate/css/style.css" rel="stylesheet">
+    <link href="~/Content/MyTemplate/css/style-responsive.css" rel="stylesheet">
+   
+    <script src="~/Content/MyTemplate/lib/chart-master/Chart.js"></script>
 
-  <!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
-<style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;display: block;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;padding: 5px 5px 8px 5px;font: 10px arial, san serif;text-align: left;}</style>
+    <!-- =======================================================
+      Template Name: Dashio
+      Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+      Author: TemplateMag.com
+      License: https://templatemag.com/license/
+    ======================================================= -->
+    <style type="text/css">
+        .jqstooltip {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            display: block;
+            visibility: hidden;
+            background: rgb(0, 0, 0) transparent;
+            background-color: rgba(0,0,0,0.6);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+            color: white;
+            font: 10px arial, san serif;
+            text-align: left;
+            white-space: nowrap;
+            border: 1px solid white;
+            z-index: 10000;
+        }
 
+        .jqsfield {
+            color: white;
+            padding: 5px 5px 8px 5px;
+            font: 10px arial, san serif;
+            text-align: left;
+        }
+    </style>
+        @RenderSection("css", required: false)
 </head>
 <body>
 
@@ -386,194 +412,194 @@
         <section id="main-content">
             <section class="wrapper">
                 <div class="row">
-                 
+
                     <div class="col-lg-9 main-chart">
                         @RenderBody()
-                </div>
-            
-                <!-- /col-lg-9 END SECTION MIDDLE -->
-                <!-- **********************************************************************************************************************************************************
-                    RIGHT SIDEBAR CONTENT
-                    *********************************************************************************************************************************************************** -->
-                <div class="col-lg-3 ds">
-                    <!--COMPLETED ACTIONS DONUTS CHART-->
-                    <div class="donut-main">
-                        <h4>COMPLETED ACTIONS &amp; PROGRESS</h4>
-                        <canvas id="newchart" height="162" width="162" style="width: 130px; height: 130px;"></canvas>
-                        <script>
-                            var doughnutData = [{
-                                value: 70,
-                                color: "#4ECDC4"
-                            },
-                            {
-                                value: 30,
-                                color: "#fdfdfd"
-                            }
-                            ];
-                            var myDoughnut = new Chart(document.getElementById("newchart").getContext("2d")).Doughnut(doughnutData);
-                        </script>
                     </div>
-                    <!--NEW EARNING STATS -->
-                    <div class="panel terques-chart">
-                        <div class="panel-body">
-                            <div class="chart">
-                                <div class="centered">
-                                    <span>TODAY EARNINGS</span>
-                                    <strong>$ 890,00 | 15%</strong>
-                                </div>
-                                <br>
-                                <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"><canvas width="238" height="75" style="display: inline-block; width: 238px; height: 75px; vertical-align: top;"></canvas></div>
-                            </div>
+
+                    <!-- /col-lg-9 END SECTION MIDDLE -->
+                    <!-- **********************************************************************************************************************************************************
+                        RIGHT SIDEBAR CONTENT
+                        *********************************************************************************************************************************************************** -->
+                    @*<div class="col-lg-3 ds">
+                        <!--COMPLETED ACTIONS DONUTS CHART-->
+                        <div class="donut-main">
+                            <h4>COMPLETED ACTIONS &amp; PROGRESS</h4>
+                            <canvas id="newchart" height="162" width="162" style="width: 130px; height: 130px;"></canvas>
+                            <script>
+                                var doughnutData = [{
+                                    value: 70,
+                                    color: "#4ECDC4"
+                                },
+                                {
+                                    value: 30,
+                                    color: "#fdfdfd"
+                                }
+                                ];
+                                var myDoughnut = new Chart(document.getElementById("newchart").getContext("2d")).Doughnut(doughnutData);
+                            </script>
                         </div>
-                    </div>
-                    <!--new earning end-->
-                    <!-- RECENT ACTIVITIES SECTION -->
-                    <h4 class="centered mt">RECENT ACTIVITY</h4>
-                    <!-- First Activity -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p>
-                                <muted>Just Now</muted>
-                                <br>
-                                <a href="#">Paul Rudd</a> purchased an item.<br>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Second Activity -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p>
-                                <muted>2 Minutes Ago</muted>
-                                <br>
-                                <a href="#">James Brown</a> subscribed to your newsletter.<br>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Third Activity -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p>
-                                <muted>3 Hours Ago</muted>
-                                <br>
-                                <a href="#">Diana Kennedy</a> purchased a year subscription.<br>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Fourth Activity -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p>
-                                <muted>7 Hours Ago</muted>
-                                <br>
-                                <a href="#">Brando Page</a> purchased a year subscription.<br>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- USERS ONLINE SECTION -->
-                    <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
-                    <!-- First Member -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <img class="img-circle" src="img/ui-divya.jpg" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                            <p>
-                                <a href="#">DIVYA MANIAN</a><br>
-                                <muted>Available</muted>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Second Member -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <img class="img-circle" src="img/ui-sherman.jpg" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                            <p>
-                                <a href="#">DJ SHERMAN</a><br>
-                                <muted>I am Busy</muted>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Third Member -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <img class="img-circle" src="img/ui-danro.jpg" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                            <p>
-                                <a href="#">DAN ROGERS</a><br>
-                                <muted>Available</muted>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Fourth Member -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <img class="img-circle" src="img/ui-zac.jpg" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                            <p>
-                                <a href="#">Zac Sniders</a><br>
-                                <muted>Available</muted>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- CALENDAR-->
-                    <div id="calendar" class="mb">
-                        <div class="panel green-panel no-margin">
+                        <!--NEW EARNING STATS -->
+                        <div class="panel terques-chart">
                             <div class="panel-body">
-                                <div id="date-popover" class="popover top" style="cursor: pointer; margin-left: 33%; margin-top: -50px; width: 175px; display: none;" data-original-title="" title="">
-                                    <div class="arrow"></div>
-                                    <h3 class="popover-title" style="disadding: none;"></h3>
-                                    <div id="date-popover-content" class="popover-content"></div>
+                                <div class="chart">
+                                    <div class="centered">
+                                        <span>TODAY EARNINGS</span>
+                                        <strong>$ 890,00 | 15%</strong>
+                                    </div>
+                                    <br>
+                                    <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"><canvas width="238" height="75" style="display: inline-block; width: 238px; height: 75px; vertical-align: top;"></canvas></div>
                                 </div>
-                                <div id="zabuto_calendar_rfb"><div class="zabuto_calendar" id="zabuto_calendar_rfb"><table class="table"><tbody><tr class="calendar-month-header"><th><div class="calendar-month-navigation" id="zabuto_calendar_rfb_nav-prev"><span><span class="fa fa-chevron-left text-transparent"></span></span></div></th><th colspan="5"><span>March 2019</span></th><th><div class="calendar-month-navigation" id="zabuto_calendar_rfb_nav-next"><span><span class="fa fa-chevron-right text-transparent"></span></span></div></th></tr><tr class="calendar-dow-header"><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr><tr class="calendar-dow"><td></td><td></td><td></td><td></td><td id="zabuto_calendar_rfb_2019-03-01" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-01_day" class="day">1</div></td><td id="zabuto_calendar_rfb_2019-03-02" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-02_day" class="day">2</div></td><td id="zabuto_calendar_rfb_2019-03-03" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-03_day" class="day">3</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-04" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-04_day" class="day">4</div></td><td id="zabuto_calendar_rfb_2019-03-05" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-05_day" class="day">5</div></td><td id="zabuto_calendar_rfb_2019-03-06" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-06_day" class="day">6</div></td><td id="zabuto_calendar_rfb_2019-03-07" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-07_day" class="day">7</div></td><td id="zabuto_calendar_rfb_2019-03-08" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-08_day" class="day">8</div></td><td id="zabuto_calendar_rfb_2019-03-09" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-09_day" class="day">9</div></td><td id="zabuto_calendar_rfb_2019-03-10" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-10_day" class="day">10</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-11" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-11_day" class="day">11</div></td><td id="zabuto_calendar_rfb_2019-03-12" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-12_day" class="day">12</div></td><td id="zabuto_calendar_rfb_2019-03-13" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-13_day" class="day">13</div></td><td id="zabuto_calendar_rfb_2019-03-14" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-14_day" class="day">14</div></td><td id="zabuto_calendar_rfb_2019-03-15" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-15_day" class="day">15</div></td><td id="zabuto_calendar_rfb_2019-03-16" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-16_day" class="day">16</div></td><td id="zabuto_calendar_rfb_2019-03-17" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-17_day" class="day">17</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-18" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-18_day" class="day">18</div></td><td id="zabuto_calendar_rfb_2019-03-19" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-19_day" class="day">19</div></td><td id="zabuto_calendar_rfb_2019-03-20" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-20_day" class="day">20</div></td><td id="zabuto_calendar_rfb_2019-03-21" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-21_day" class="day">21</div></td><td id="zabuto_calendar_rfb_2019-03-22" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-22_day" class="day">22</div></td><td id="zabuto_calendar_rfb_2019-03-23" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-23_day" class="day">23</div></td><td id="zabuto_calendar_rfb_2019-03-24" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-24_day" class="day">24</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-25" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-25_day" class="day">25</div></td><td id="zabuto_calendar_rfb_2019-03-26" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-26_day" class="day">26</div></td><td id="zabuto_calendar_rfb_2019-03-27" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-27_day" class="day">27</div></td><td id="zabuto_calendar_rfb_2019-03-28" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-28_day" class="day">28</div></td><td id="zabuto_calendar_rfb_2019-03-29" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-29_day" class="day">29</div></td><td id="zabuto_calendar_rfb_2019-03-30" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-30_day" class="day">30</div></td><td id="zabuto_calendar_rfb_2019-03-31" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-31_day" class="day">31</div></td></tr></tbody></table><div class="legend" id="zabuto_calendar_rfb_legend"><span class="legend-text"><span class="badge badge-event">00</span> Special event</span><span class="legend-block"><ul class="legend"><li class="event"></li><span>Regular event</span></ul></span></div></div></div>
                             </div>
                         </div>
-                    </div>
-                    <!-- / calendar -->
+                        <!--new earning end-->
+                        <!-- RECENT ACTIVITIES SECTION -->
+                        <h4 class="centered mt">RECENT ACTIVITY</h4>
+                        <!-- First Activity -->
+                        <div class="desc">
+                            <div class="thumb">
+                                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                            </div>
+                            <div class="details">
+                                <p>
+                                    <muted>Just Now</muted>
+                                    <br>
+                                    <a href="#">Paul Rudd</a> purchased an item.<br>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Second Activity -->
+                        <div class="desc">
+                            <div class="thumb">
+                                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                            </div>
+                            <div class="details">
+                                <p>
+                                    <muted>2 Minutes Ago</muted>
+                                    <br>
+                                    <a href="#">James Brown</a> subscribed to your newsletter.<br>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Third Activity -->
+                        <div class="desc">
+                            <div class="thumb">
+                                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                            </div>
+                            <div class="details">
+                                <p>
+                                    <muted>3 Hours Ago</muted>
+                                    <br>
+                                    <a href="#">Diana Kennedy</a> purchased a year subscription.<br>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Fourth Activity -->
+                        <div class="desc">
+                            <div class="thumb">
+                                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                            </div>
+                            <div class="details">
+                                <p>
+                                    <muted>7 Hours Ago</muted>
+                                    <br>
+                                    <a href="#">Brando Page</a> purchased a year subscription.<br>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- USERS ONLINE SECTION -->
+                        <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
+                        <!-- First Member -->
+                        <div class="desc">
+                            <div class="thumb">
+                                <img class="img-circle" src="img/ui-divya.jpg" width="35px" height="35px" align="">
+                            </div>
+                            <div class="details">
+                                <p>
+                                    <a href="#">DIVYA MANIAN</a><br>
+                                    <muted>Available</muted>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Second Member -->
+                        <div class="desc">
+                            <div class="thumb">
+                                <img class="img-circle" src="img/ui-sherman.jpg" width="35px" height="35px" align="">
+                            </div>
+                            <div class="details">
+                                <p>
+                                    <a href="#">DJ SHERMAN</a><br>
+                                    <muted>I am Busy</muted>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Third Member -->
+                        <div class="desc">
+                            <div class="thumb">
+                                <img class="img-circle" src="img/ui-danro.jpg" width="35px" height="35px" align="">
+                            </div>
+                            <div class="details">
+                                <p>
+                                    <a href="#">DAN ROGERS</a><br>
+                                    <muted>Available</muted>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Fourth Member -->
+                        <div class="desc">
+                            <div class="thumb">
+                                <img class="img-circle" src="img/ui-zac.jpg" width="35px" height="35px" align="">
+                            </div>
+                            <div class="details">
+                                <p>
+                                    <a href="#">Zac Sniders</a><br>
+                                    <muted>Available</muted>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- CALENDAR-->
+                        <div id="calendar" class="mb">
+                            <div class="panel green-panel no-margin">
+                                <div class="panel-body">
+                                    <div id="date-popover" class="popover top" style="cursor: pointer; margin-left: 33%; margin-top: -50px; width: 175px; display: none;" data-original-title="" title="">
+                                        <div class="arrow"></div>
+                                        <h3 class="popover-title" style="disadding: none;"></h3>
+                                        <div id="date-popover-content" class="popover-content"></div>
+                                    </div>
+                                    <div id="zabuto_calendar_rfb"><div class="zabuto_calendar" id="zabuto_calendar_rfb"><table class="table"><tbody><tr class="calendar-month-header"><th><div class="calendar-month-navigation" id="zabuto_calendar_rfb_nav-prev"><span><span class="fa fa-chevron-left text-transparent"></span></span></div></th><th colspan="5"><span>March 2019</span></th><th><div class="calendar-month-navigation" id="zabuto_calendar_rfb_nav-next"><span><span class="fa fa-chevron-right text-transparent"></span></span></div></th></tr><tr class="calendar-dow-header"><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr><tr class="calendar-dow"><td></td><td></td><td></td><td></td><td id="zabuto_calendar_rfb_2019-03-01" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-01_day" class="day">1</div></td><td id="zabuto_calendar_rfb_2019-03-02" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-02_day" class="day">2</div></td><td id="zabuto_calendar_rfb_2019-03-03" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-03_day" class="day">3</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-04" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-04_day" class="day">4</div></td><td id="zabuto_calendar_rfb_2019-03-05" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-05_day" class="day">5</div></td><td id="zabuto_calendar_rfb_2019-03-06" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-06_day" class="day">6</div></td><td id="zabuto_calendar_rfb_2019-03-07" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-07_day" class="day">7</div></td><td id="zabuto_calendar_rfb_2019-03-08" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-08_day" class="day">8</div></td><td id="zabuto_calendar_rfb_2019-03-09" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-09_day" class="day">9</div></td><td id="zabuto_calendar_rfb_2019-03-10" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-10_day" class="day">10</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-11" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-11_day" class="day">11</div></td><td id="zabuto_calendar_rfb_2019-03-12" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-12_day" class="day">12</div></td><td id="zabuto_calendar_rfb_2019-03-13" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-13_day" class="day">13</div></td><td id="zabuto_calendar_rfb_2019-03-14" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-14_day" class="day">14</div></td><td id="zabuto_calendar_rfb_2019-03-15" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-15_day" class="day">15</div></td><td id="zabuto_calendar_rfb_2019-03-16" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-16_day" class="day">16</div></td><td id="zabuto_calendar_rfb_2019-03-17" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-17_day" class="day">17</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-18" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-18_day" class="day">18</div></td><td id="zabuto_calendar_rfb_2019-03-19" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-19_day" class="day">19</div></td><td id="zabuto_calendar_rfb_2019-03-20" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-20_day" class="day">20</div></td><td id="zabuto_calendar_rfb_2019-03-21" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-21_day" class="day">21</div></td><td id="zabuto_calendar_rfb_2019-03-22" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-22_day" class="day">22</div></td><td id="zabuto_calendar_rfb_2019-03-23" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-23_day" class="day">23</div></td><td id="zabuto_calendar_rfb_2019-03-24" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-24_day" class="day">24</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-25" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-25_day" class="day">25</div></td><td id="zabuto_calendar_rfb_2019-03-26" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-26_day" class="day">26</div></td><td id="zabuto_calendar_rfb_2019-03-27" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-27_day" class="day">27</div></td><td id="zabuto_calendar_rfb_2019-03-28" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-28_day" class="day">28</div></td><td id="zabuto_calendar_rfb_2019-03-29" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-29_day" class="day">29</div></td><td id="zabuto_calendar_rfb_2019-03-30" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-30_day" class="day">30</div></td><td id="zabuto_calendar_rfb_2019-03-31" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-31_day" class="day">31</div></td></tr></tbody></table><div class="legend" id="zabuto_calendar_rfb_legend"><span class="legend-text"><span class="badge badge-event">00</span> Special event</span><span class="legend-block"><ul class="legend"><li class="event"></li><span>Regular event</span></ul></span></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / calendar -->
+                    </div>*@
+                    <!-- /col-lg-3 -->
                 </div>
-                <!-- /col-lg-3 -->
-            </div>
-            <!-- /row -->
+                <!-- /row -->
+            </section>
         </section>
-    </section>
-    <!--main content end-->
-    <!--footer start-->
-    <footer class="site-footer">
-        <div class="text-center">
-            <p>
-                © Copyrights <strong>Dashio</strong>. All Rights Reserved
-            </p>
-            <div class="credits">
-                <!--
-                  You are NOT allowed to delete the credit link to TemplateMag with free version.
-                  You can delete the credit link only if you bought the pro version.
-                  Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-                  Licensing information: https://templatemag.com/license/
-                -->
-                Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
+        <!--main content end-->
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                <p>
+                    © Copyrights <strong>Dashio</strong>. All Rights Reserved
+                </p>
+                <div class="credits">
+                    <!--
+                      You are NOT allowed to delete the credit link to TemplateMag with free version.
+                      You can delete the credit link only if you bought the pro version.
+                      Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
+                      Licensing information: https://templatemag.com/license/
+                    -->
+                    Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
+                </div>
+                <a href="index.html#" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
             </div>
-            <a href="index.html#" class="go-top">
-                <i class="fa fa-angle-up"></i>
-            </a>
-        </div>
-    </footer>
-    <!--footer end-->
-</section>
+        </footer>
+        <!--footer end-->
+    </section>
 
 
 
@@ -581,7 +607,7 @@
 
 
 
-
+    @RenderSection("js", required: false)
 
 
 
