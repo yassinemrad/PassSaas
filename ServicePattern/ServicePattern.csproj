@@ -72,10 +72,6 @@
       <Project>{9f5f26e7-7922-4945-8062-f3bf5d4a3a13}</Project>
       <Name>DataMap</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DomainMap\DomainMap.csproj">
-      <Project>{f21a712e-6c31-48fa-bf46-95bda79b9287}</Project>
-      <Name>DomainMap</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\toastr.css" />
