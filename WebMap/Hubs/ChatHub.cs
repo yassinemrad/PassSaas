@@ -17,7 +17,6 @@ namespace WebMap.Hubs
 
             var id = "1";
 
-
             if (ConnectedUsers.Count(x => x.ConnectionId == id) == 0)
             {
                 string UserImg = GetUserImage(userName);
