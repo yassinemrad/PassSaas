@@ -9,7 +9,7 @@ using WebMap.Controllers;
 using System.Web.Mvc;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
-using Hanssens.Net;
+
 using System.Data;
 
 namespace WebMap.Hubs
