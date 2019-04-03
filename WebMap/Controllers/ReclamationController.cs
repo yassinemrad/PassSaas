@@ -21,7 +21,9 @@ namespace WebMap.Controllers
         {
             var r = rs.listRecNonLu();
             List<reclamationViewModel> l = new List<reclamationViewModel>();
-            foreach(var i in r)
+            var a = User.Identity.GetUserId();
+            ViewBag.user = a;
+            foreach (var i in r)
             {
                 reclamationViewModel rv = new reclamationViewModel();
                 rv.id = i.id;
@@ -72,13 +74,13 @@ namespace WebMap.Controllers
         [HttpPost]
         public ActionResult Create(reclamationViewModel rec)
         {
-           
+            
             reclamation r = new reclamation();
             r.etat = 1;
             r.objet = rec.objet;
             r.description = rec.description;
             r.date= DateTime.Now.ToString("dd-MM-yyyy");
-           // r.user = User.Identity.GetUserId;
+           // r.user = User.Identity.GetUserName();
             rs.Add(r);
             rs.Commit();
             return RedirectToAction("MyReclamation");

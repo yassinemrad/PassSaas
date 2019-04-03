@@ -7,6 +7,8 @@
 
 <h2>Index</h2>
 
+<h1>user = @ViewBag.user</h1>
+
 
 
 <p>
@@ -30,25 +32,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.objet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Traitement", "Traitement", new { id = item.id })
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.objet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Traitement", "Traitement", new { id = item.id })
 
-        </td>
-    </tr>
-}
+            </td>
+        </tr>
+    }
 
 </table>

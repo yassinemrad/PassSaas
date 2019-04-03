@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DomainMap.Entities;
 using Microsoft.AspNet.SignalR;
 using WebMap.Models;
-using Microsoft.AspNet.Identity;
-using System.Web.Mvc;
 
 namespace WebMap.Hubs
 {
@@ -19,7 +16,6 @@ namespace WebMap.Hubs
         {
 
             var id = "1";
-
 
             if (ConnectedUsers.Count(x => x.ConnectionId == id) == 0)
             {
