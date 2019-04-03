@@ -8,21 +8,27 @@ using System.Web;
 using System.Web.Mvc;
 using WebMap.Models;
 using Microsoft.AspNet.Identity;
+using System.Data;
 
 namespace WebMap.Controllers
 {
+    
     public class ReclamationController : Controller
     {
-        
+    
 
         ReclamationService rs = new ReclamationService();
+        UserService us = new UserService();
         // GET: Reclamation
         public ActionResult Index()
         {
+
+             
             var r = rs.listRecNonLu();
             List<reclamationViewModel> l = new List<reclamationViewModel>();
-            var a = User.Identity.GetUserId();
-            ViewBag.user = a;
+            //Session["idU"] = User.Identity.GetUserId();
+            //ViewBag.user = Session["idU"] ;
+
             foreach (var i in r)
             {
                 reclamationViewModel rv = new reclamationViewModel();
@@ -80,7 +86,7 @@ namespace WebMap.Controllers
             r.objet = rec.objet;
             r.description = rec.description;
             r.date= DateTime.Now.ToString("dd-MM-yyyy");
-           // r.user = User.Identity.GetUserName();
+            r.user.Id = Int32.Parse(System.Web.HttpContext.Current.User.Identity.GetUserId());
             rs.Add(r);
             rs.Commit();
             return RedirectToAction("MyReclamation");
