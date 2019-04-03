@@ -11,7 +11,8 @@
 window.onload = function () {
 
     var chart = new CanvasJS.Chart("hero-bar", {
-	animationEnabled: true,
+        animationEnabled: true,
+        
 	title: {
 		text: "Seconde Chart"
 	},
@@ -27,10 +28,16 @@ window.onload = function () {
 		indexLabel: "{y}",
 		dataPoints: @Html.Raw(ViewBag.DataPoints)
 	}]
-});
+    });
+   
 chart.render();
-
-}
+  
+        }
+        
+        function printc() {
+            cchart = $("#hero-bar").ejChart("instance");
+            cchart.print("hero-bar");
+        }
     </script>
 </head>
 <body>
@@ -39,9 +46,11 @@ chart.render();
             <h4><i class="fa fa-angle-right"></i> Chart Example 2</h4>
             <div class="panel-body">
                 <div class="panel-body">
-                <div id="hero-bar" class="graph" style="height: 370px; width: 100%;"></div>
+                    <div id="hero-bar" class="graph" style="height: 370px; width: 100%;"></div>
+                </div>
+                <button type="button" class="activity-panel" id="c" onclick="print()"></button>
+
             </div>
-        </div>
     </div>
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

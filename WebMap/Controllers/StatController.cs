@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web.Mvc;
 using ServiceMap;
 using DomainMap.Entities;
+using Rotativa;
+
 
 namespace WebMap.Controllers
 {
@@ -80,7 +82,8 @@ namespace WebMap.Controllers
                 dataPoints.Add(new DataPoint(tache.name, tache.realDuration));
             }
 
-            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+
+            ViewBag.DataPoints1 = JsonConvert.SerializeObject(dataPoints);
             return View();
         }
         //----------
@@ -109,7 +112,13 @@ namespace WebMap.Controllers
             dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.ToDo.ToString(), taskService.EtatProgresstodo(id)));
             dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.Doing.ToString(), taskService.EtatProgresdoing(id)));
             dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.Done.ToString(), taskService.EtatProgressdone(id)));
-           
+           // dataPoints.Add(System.Drawing.Printing.PageSetup()
+
+
+  //  Chart_Contenu.Printing.PrintPreview()
+
+
+  //  Chart_Contenu.Printing.Print(False)
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
@@ -176,6 +185,20 @@ namespace WebMap.Controllers
             return View();
 
         }
+        public ActionResult ExportPDF()
+        {
+            ActionAsPdf result = new ActionAsPdf("durationtask")
+    
+           // return new ActionAsPdf("durationtask")
+            {
+                FileName = Server.MapPath("~/content/DataPoints1.pdf")
+            };
+            return result;
+        }
+       
+
+        
+
             // GET: Stat/Details/5
             public ActionResult Details(int id)
         {
