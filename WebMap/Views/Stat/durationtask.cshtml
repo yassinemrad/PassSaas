@@ -11,31 +11,45 @@
 <html>
 <head>
     <script>
-window.onload = function () {
+        window.onload = function () {
 
-    var chart = new CanvasJS.Chart("hero-graph", {
-	animationEnabled: true,
-	title: {
-		text: ""
-	},
-	axisX: {
-		
-	},
-	axisY: {
-		title: "Real duration task",
-		includeZero: false
-	},
-	data: [{
-		type: "line",
-		dataPoints: @Html.Raw(ViewBag.DataPoints)
+            var chart = new CanvasJS.Chart("hero-graph", {
+                animationEnabled: true,
+                title: {
+                    text: ""
+                },
+                axisX: {
+
+                },
+                axisY: {
+                    title: "Real duration task",
+                    includeZero: false
+                },
+                data: [{
+                    type: "line",
+                    dataPoints: @Html.Raw(ViewBag.DataPoints1)
 	}]
-});
-chart.render();
+            });
 
-}
+            chart.render();
+        }
+        function printc() {
+            cchart = $("#hero-graph").ejChart("instance");
+            cchart.print("hero-graph");
+        }
+       
+    </script>
+   
+  
+       
+    
+    <script>
+       
+
     </script>
 </head>
 <body>
+    <a href="@Url.Action("ExportPDF","Stat")">EXPORT PDF</a>
     
            
                 <div class="row mt">
@@ -43,7 +57,12 @@ chart.render();
                         <div class="content-panel">
                             <h4><i class="fa fa-angle-right"></i> Chart Example 1</h4>
                             <div class="panel-body">
-                                <div id="hero-graph" class="graph" style="height: 370px; width: 100%;" ></div>
+                                <div id="hero-graph" class="graph" style="height: 370px; width: 100%;">
+
+                                </div>
+
+                                <button type="button" class="activity-panel" id="c" onclick="print()"></button>
+
                             </div>
                         </div>
                     </div></div>

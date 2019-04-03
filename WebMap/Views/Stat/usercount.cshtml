@@ -55,7 +55,11 @@ window.onload = function () {
 });
     chart.render();
 
-}
+        }
+        function printc() {
+            cchart = $("#chart-1").ejChart("instance");
+            cchart.print("chart-1");
+        }
     </script>
 </head>
 <body>
@@ -82,6 +86,8 @@ window.onload = function () {
                 <div class="panel-body">
                     <div id="chart-1" class="chart" style="height: 370px; width: 100%;"></div>
                 </div>
+                <button type="button" class="activity-panel" id="c" onclick="print()"></button>
+
             </div>
         </div>
     </div>

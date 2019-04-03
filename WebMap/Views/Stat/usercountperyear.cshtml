@@ -32,7 +32,11 @@ window.onload = function () {
 });
 chart.render();
 
-}
+        }
+        function printc() {
+            cchart = $("#chartContainer").ejChart("instance");
+            cchart.print("chartContainer");
+        }
     </script>
 </head>
 <body>
@@ -45,10 +49,14 @@ chart.render();
                 <div class="panel-body">
                     <div id="hero-graph" class="graph" style="height: 370px; width: 100%;"></div>
                 </div>
+
             </div>
+
+
         </div>
     </div>
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <button type="button" class="activity-panel" id="c" onclick="print()"></button>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>  
