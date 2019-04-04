@@ -14,7 +14,6 @@ namespace DomainMap.Entities
     {
         public String LastName { get; set; }
         public String FirstName { get; set; }
-        public String Role { get; set; }
         public ICollection<Message> messages { get; set; }
         public ICollection<Notification> notifications { get; set; }
         public override String Email { get; set; }
