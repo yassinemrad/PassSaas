@@ -239,6 +239,7 @@
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\ReclamationController.cs" />
     <Compile Include="Controllers\StatController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
@@ -584,7 +585,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_MyTemplatepage.cshtml" />
     <Content Include="Views\Tasks\Edit.cshtml" />
-    <Content Include="Views\Tasks\Delete.cshtml" />
     <Content Include="Views\Tasks\AllTasks.cshtml" />
     <Content Include="Views\Tasks\Create.cshtml" />
     <Content Include="Views\Reclamation\Create.cshtml" />
@@ -600,6 +600,9 @@
     <Content Include="Views\Stat\usercount.cshtml" />
     <Content Include="Views\Stat\usercountmsg.cshtml" />
     <Content Include="Views\Stat\usercountperyear.cshtml" />
+    <Content Include="Views\Tasks\Details.cshtml" />
+    <Content Include="Views\Module\Create.cshtml" />
+    <Content Include="Views\Module\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
