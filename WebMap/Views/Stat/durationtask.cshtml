@@ -10,11 +10,19 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <p>
+        @Html.ActionLink("Convert View To PDF", "PrintViewToPdf")
+    </p>
+  <div>  
+    <button divclass = "btnbtn-success" > @Html.ActionLink("Create Pdf", "PrintViewToPdf", "Stat") </button>< /div>
+    
+  
     <script>
         window.onload = function () {
 
             var chart = new CanvasJS.Chart("hero-graph", {
                 animationEnabled: true,
+                exportEnabled: true,
                 title: {
                     text: ""
                 },
@@ -37,14 +45,14 @@
             cchart = $("#hero-graph").ejChart("instance");
             cchart.print("hero-graph");
         }
-       
+
     </script>
-   
-  
-       
-    
+
+
+
+
     <script>
-       
+
 
     </script>
 </head>
@@ -68,5 +76,8 @@
                     </div></div>
                     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+
 </body>
 </html>  

@@ -8,7 +8,10 @@ using System.Web.Mvc;
 using ServiceMap;
 using DomainMap.Entities;
 using Rotativa;
-
+using Microsoft.AspNet.Identity;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace WebMap.Controllers
 {
@@ -17,14 +20,14 @@ namespace WebMap.Controllers
         ITasksService taskService = new TasksService();
         IProjetService projectService = new ProjetService();
         IUserService userservice = new UserService();
-     //   ImessageService mesgService = new messageService();
-        
-        
-        
+        //   ImessageService mesgService = new messageService();
+
+
+
         // GET: Stat
         public ActionResult Index()
         {
-            
+
             return View();
         }
         // GET : Home
@@ -32,13 +35,13 @@ namespace WebMap.Controllers
         {
             List<DataPoint> dataPoints = new List<DataPoint>();
             Dictionary<String, int> tempDic = new Dictionary<String, int>();
-          //  List<projet> projet = projectService.listproj();
+            //  List<projet> projet = projectService.listproj();
             //foreach (var item in collection)
             //{
 
             //}
             tempDic = taskService.EtatCount();
-            foreach(var element in tempDic)
+            foreach (var element in tempDic)
             {
                 dataPoints.Add(new DataPoint(element.Key, element.Value));
             }
@@ -90,7 +93,7 @@ namespace WebMap.Controllers
         public ActionResult categparprojet()
         {
             List<DataPoint> dataPoints = new List<DataPoint>();
-            dataPoints.Add(new DataPoint(Cathegory.Banking.ToString(),projectService.categoriebank() ));
+            dataPoints.Add(new DataPoint(Cathegory.Banking.ToString(), projectService.categoriebank()));
             dataPoints.Add(new DataPoint(Cathegory.Commercial.ToString(), projectService.categcountcommer()));
             dataPoints.Add(new DataPoint(Cathegory.Education.ToString(), projectService.categcounteduc()));
             dataPoints.Add(new DataPoint(Cathegory.Medical.ToString(), projectService.categcountmedic()));
@@ -102,57 +105,62 @@ namespace WebMap.Controllers
 
 
             return View();
-                
+
         }
         public ActionResult progressproject(int id = 1)
         {
-            
+
             List<ProjetModels> listP = mapi();
             List<DataPoint> dataPoints = new List<DataPoint>();
             dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.ToDo.ToString(), taskService.EtatProgresstodo(id)));
             dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.Doing.ToString(), taskService.EtatProgresdoing(id)));
             dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.Done.ToString(), taskService.EtatProgressdone(id)));
-           // dataPoints.Add(System.Drawing.Printing.PageSetup()
+            // dataPoints.Add(System.Drawing.Printing.PageSetup()
 
 
-  //  Chart_Contenu.Printing.PrintPreview()
+            //  Chart_Contenu.Printing.PrintPreview()
 
 
-  //  Chart_Contenu.Printing.Print(False)
+            //  Chart_Contenu.Printing.Print(False)
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
             ViewBag.ListProjet = listP;
-          
 
-                return View();
+
+            return View();
 
         }
         public List<ProjetModels> mapi()
         {
-           List<ProjetModels> lists = new List<ProjetModels>();
+            List<ProjetModels> lists = new List<ProjetModels>();
             foreach (var item in projectService.GetAll())
             {
                 ProjetModels dvm = new ProjetModels();
                 dvm.id = item.id;
                 dvm.name = item.name;
-              
+
                 lists.Add(dvm);
 
             }
             return lists;
         }
         public ActionResult usercountperyear()
-        {
+        { User h = userservice.GetById(Int32.Parse(User.Identity.GetUserId()));
+            //  var s = userservice.getbyuser(User.Identity.GetUserId().);
+            var r = (WebMap.Models.Role.TeamLeader.ToString());
+            //  dvm.Etat = (BibliothequeWeb.Models.Etat)item.Etat;
+            ViewBag.rs = User.Identity.GetUserId();
+            ViewBag.users = r;
             List<DataPoint> dataPoints = new List<DataPoint>();
             Dictionary<String, int> userdic = new Dictionary<String, int>();
-           //   List<Projet> projet = projectService.listproj();
-            
-           //foreach (var item in collection)
-           //{
+            //   List<Projet> projet = projectService.listproj();
 
-           //}
-           userdic = userservice.userdate();
+            //foreach (var item in collection)
+            //{
+
+            //}
+            userdic = userservice.userdate();
             foreach (var element in userdic)
             {
                 dataPoints.Add(new DataPoint(element.Key.ToString(), element.Value));
@@ -163,10 +171,14 @@ namespace WebMap.Controllers
             return View();
 
         }
+
+        //kol projet 9adh fih mn user
+
         public ActionResult usercountmsg()
         {
-          //  RegisterViewModel a;
-           
+            //  RegisterViewModel a;
+
+            // if (h.Roles.ToString() == "TeamMember") ;
             List<DataPoint> dataPoints = new List<DataPoint>();
             Dictionary<String, double> msgdiccountmsg = new Dictionary<String, double>();
             //  List<projet> projet = projectService.listproj();
@@ -174,13 +186,13 @@ namespace WebMap.Controllers
             //{
 
             //}
-         //   msgdiccountmsg = mesgService.countmessage("jrad");
-           // foreach (var element in msgdiccountmsg)
-           // {
-             //   dataPoints.Add(new DataPoint(element.Key.ToString(), element.Value));
-           // }
+            //   msgdiccountmsg = mesgService.countmessage("jrad");
+            // foreach (var element in msgdiccountmsg)
+            // {
+            //   dataPoints.Add(new DataPoint(element.Key.ToString(), element.Value));
+            // }
 
-           // ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+            // ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
             return View();
 
@@ -188,19 +200,39 @@ namespace WebMap.Controllers
         public ActionResult ExportPDF()
         {
             ActionAsPdf result = new ActionAsPdf("durationtask")
-    
-           // return new ActionAsPdf("durationtask")
+
+            // return new ActionAsPdf("durationtask")
             {
                 FileName = Server.MapPath("~/content/DataPoints1.pdf")
             };
             return result;
         }
-       
 
-        
 
-            // GET: Stat/Details/5
-            public ActionResult Details(int id)
+        public ActionResult PrintViewToPdf()
+        {
+            var report = new ActionAsPdf("durationtask");
+            return report;
+        }
+
+
+        public ActionResult Export()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Export_Save(string contentType, string base64, string fileName)
+        {
+            var fileContents = Convert.FromBase64String(base64);
+
+            return File(fileContents, contentType, fileName);
+        }
+    
+
+
+    // GET: Stat/Details/5
+    public ActionResult Details(int id)
         {
             return View();
         }
@@ -271,4 +303,6 @@ namespace WebMap.Controllers
             }
         }
     }
+
+   
 }

@@ -11,5 +11,6 @@ namespace ServiceMap
  public   interface IUserService: IServicePattern<User>
     {
         Dictionary<String, int> userdate();
+        User getbyuser(int id);
     }
 }
