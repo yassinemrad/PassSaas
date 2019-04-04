@@ -42,29 +42,30 @@ chart.render();
     </script>
 </head>
 <body>
-    <div>
-        <form method="get" action="progressproject">
-            <select id="mySelect" name="id">
-                @{
-                    foreach (var item in ViewBag.ListProjet as IEnumerable<WebMap.Models.ProjetModels>)
-                    {
-                        <option value="@item.id">
-                            @item.name
-                        </option>
-                    }
-                }
-            </select>
-            <input type="submit" value="chart"/>
-        </form>
-    </div>
+   
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
     <div class="col-lg-6">
         <div class="content-panel">
             <h4><i class="fa fa-angle-right"></i> Chart Example 4</h4>
             <div class="panel-body">
-              
-                  <div id="hero-donut" class="graph" style="height: 370px; width: 100%;"></div>
-              
+
+                <div id="hero-donut" class="graph" style="height: 370px; width: 100%;"></div>
+                <div>
+                    <form method="get" action="progressproject">
+                        <select id="mySelect" name="id">
+                            @{
+                                foreach (var item in ViewBag.ListProjet as IEnumerable<WebMap.Models.ProjetModels>)
+                                {
+                                    <option value="@item.id">
+                                        @item.name
+                                    </option>
+                                }
+                            }
+                        </select>
+                        <input type="submit" value="chart" />
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
@@ -73,5 +74,6 @@ chart.render();
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html> 
+
 
 
