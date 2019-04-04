@@ -14,6 +14,7 @@ namespace WebMap.Models
         public string description { get; set; }
         public int etat { get; set; }
         public string date { get; set; }
-        public User user { get; set; }
+        public int user { get; set; }
+        public string username { get; set; }
     }
 }

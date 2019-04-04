@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebMap.Models.ModuleModels>
+@{
+    Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Ajouter Module", "Create")
+    </p>
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.nom)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.nom)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                <td>
+                    @Html.ActionLink("Ajouter Tache", "Create", "Tasks", new { id = item.id }, null)
+                </td>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

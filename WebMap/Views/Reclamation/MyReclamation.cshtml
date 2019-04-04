@@ -8,7 +8,7 @@
 <h2>MyReclamation</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.us })
 </p>
 
 @{ if (TempData["erreur"] != null)
