@@ -31,8 +31,12 @@
       License: https://templatemag.com/license/
     ======================================================= -->
 </head>
-
 <body>
+
+
+
+
+
     <section id="container">
         <!-- **********************************************************************************************************************************************************
             TOP BAR CONTENT & NOTIFICATIONS
@@ -130,7 +134,7 @@
                             </li>
                             <li>
                                 <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="~/Content/Template/img/ui-zac.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="img/ui-zac.jpg"></span>
                                     <span class="subject">
                                         <span class="from">Zac Snider</span>
                                         <span class="time">Just now</span>
@@ -142,7 +146,7 @@
                             </li>
                             <li>
                                 <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="~/Content/Template/img/ui-divya.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="img/ui-divya.jpg"></span>
                                     <span class="subject">
                                         <span class="from">Divya Manian</span>
                                         <span class="time">40 mins.</span>
@@ -154,7 +158,7 @@
                             </li>
                             <li>
                                 <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="~/Content/Template/img/ui-danro.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="img/ui-danro.jpg"></span>
                                     <span class="subject">
                                         <span class="from">Dan Rogers</span>
                                         <span class="time">2 hrs.</span>
@@ -166,7 +170,7 @@
                             </li>
                             <li>
                                 <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="~/Content/Template/img/ui-sherman.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="img/ui-sherman.jpg"></span>
                                     <span class="subject">
                                         <span class="from">Dj Sherman</span>
                                         <span class="time">4 hrs.</span>
@@ -242,35 +246,30 @@
             *********************************************************************************************************************************************************** -->
         <!--sidebar start-->
         <aside>
-            <div id="sidebar" class="nav-collapse ">
+            <div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
-                    <p class="centered"><a href="profile.html"><img src="~/Content/Template/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+                    <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
                     <h5 class="centered">Sam Soffes</h5>
                     <li class="mt">
-                        <a class="active" href="index.html">
+                        <a class="active" href="/Tasks/AllTasks">
                             <i class="fa fa-dashboard"></i>
-                            <span>Dashboard</span>
+                            <span>Tasks</span>
                         </a>
                     </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-desktop"></i>
-                            <span>UI Elements</span>
+                    <li class="mt">
+                        <a class="active" href="/Module/Index">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Modules</span>
                         </a>
-                        <ul class="sub">
-                            <li><a href="general.html">General</a></li>
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="panels.html">Panels</a></li>
-                            <li><a href="font_awesome.html">Font Awesome</a></li>
-                        </ul>
                     </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
+                    <li class="sub-menu dcjq-parent-li">
+                        <a href="javascript:;" class="dcjq-parent">
                             <i class="fa fa-cogs"></i>
                             <span>Components</span>
+                            <span class="dcjq-icon"></span>
                         </a>
-                        <ul class="sub">
+                        <ul class="sub" style="display: none;">
                             <li><a href="grids.html">Grids</a></li>
                             <li><a href="calendar.html">Calendar</a></li>
                             <li><a href="gallery.html">Gallery</a></li>
@@ -280,12 +279,13 @@
                             <li><a href="file_upload.html">Multiple File Upload</a></li>
                         </ul>
                     </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
+                    <li class="sub-menu dcjq-parent-li">
+                        <a href="javascript:;" class="dcjq-parent">
                             <i class="fa fa-book"></i>
                             <span>Extra Pages</span>
+                            <span class="dcjq-icon"></span>
                         </a>
-                        <ul class="sub">
+                        <ul class="sub" style="display: none;">
                             <li><a href="blank.html">Blank Page</a></li>
                             <li><a href="login.html">Login</a></li>
                             <li><a href="lock_screen.html">Lock Screen</a></li>
@@ -297,55 +297,59 @@
                             <li><a href="500.html">500 Error</a></li>
                         </ul>
                     </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
+                    <li class="sub-menu dcjq-parent-li">
+                        <a href="@Url.Action("Chat","Chat")">
                             <i class="fa fa-tasks"></i>
-                            <span>Forms</span>
+                            <span>Chat</span>
+                            <span class="dcjq-icon"></span>
                         </a>
-                        <ul class="sub">
-                            <li><a href="form_component.html">Form Components</a></li>
-                            <li><a href="advanced_form_components.html">Advanced Components</a></li>
-                            <li><a href="form_validation.html">Form Validation</a></li>
-                            <li><a href="contactform.html">Contact Form</a></li>
-                        </ul>
+                        @*<ul class="sub" style="display: none;">
+                                <li><a href="form_component.html">Form Components</a></li>
+                                <li><a href="advanced_form_components.html">Advanced Components</a></li>
+                                <li><a href="form_validation.html">Form Validation</a></li>
+                                <li><a href="contactform.html">Contact Form</a></li>
+                            </ul>*@
                     </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
+                    <li class="sub-menu dcjq-parent-li">
+                        <a href="javascript:;" class="dcjq-parent">
                             <i class="fa fa-th"></i>
                             <span>Data Tables</span>
+                            <span class="dcjq-icon"></span>
                         </a>
-                        <ul class="sub">
+                        <ul class="sub" style="display: none;">
                             <li><a href="basic_table.html">Basic Table</a></li>
                             <li><a href="responsive_table.html">Responsive Table</a></li>
                             <li><a href="advanced_table.html">Advanced Table</a></li>
                         </ul>
                     </li>
                     <li>
-                        @*<a href="inbox.html">*@
+
                         <a href="@Url.Action("Index","Reclamation")">
                             <i class="fa fa-envelope"></i>
                             <span>Reclamation </span>
                             <span class="label label-theme pull-right mail-info"></span>
                         </a>
                     </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
+                    <li class="sub-menu dcjq-parent-li">
+                        <a href="javascript:;" class="dcjq-parent">
                             <i class=" fa fa-bar-chart-o"></i>
                             <span>Charts</span>
+                            <span class="dcjq-icon"></span>
                         </a>
-                        <ul class="sub">
+                        <ul class="sub" style="display: none;">
                             <li><a href="morris.html">Morris</a></li>
                             <li><a href="chartjs.html">Chartjs</a></li>
                             <li><a href="flot_chart.html">Flot Charts</a></li>
                             <li><a href="xchart.html">xChart</a></li>
                         </ul>
                     </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
+                    <li class="sub-menu dcjq-parent-li">
+                        <a href="javascript:;" class="dcjq-parent">
                             <i class="fa fa-comments-o"></i>
                             <span>Chat Room</span>
+                            <span class="dcjq-icon"></span>
                         </a>
-                        <ul class="sub">
+                        <ul class="sub" style="display: none;">
                             <li><a href="lobby.html">Lobby</a></li>
                             <li><a href="chat_room.html"> Chat Room</a></li>
                         </ul>
@@ -366,14 +370,177 @@
             *********************************************************************************************************************************************************** -->
         <!--main content start-->
         <section id="main-content">
-            @RenderBody()
+            <section class="wrapper">
+                <div class="row">
+                    <div class="col-lg-9 main-chart">
+                        @RenderBody()
+                    </div>
+                    <!-- /col-lg-9 END SECTION MIDDLE -->
+                    <!-- **********************************************************************************************************************************************************
+                        RIGHT SIDEBAR CONTENT
+                        *********************************************************************************************************************************************************** -->
+                    @*<div class="col-lg-3 ds">
+                            <!--COMPLETED ACTIONS DONUTS CHART-->
+                            <div class="donut-main">
+                                <h4>COMPLETED ACTIONS &amp; PROGRESS</h4>
+                                <canvas id="newchart" height="162" width="162" style="width: 130px; height: 130px;"></canvas>
+                                <script>
+                                    var doughnutData = [{
+                                        value: 70,
+                                        color: "#4ECDC4"
+                                    },
+                                    {
+                                        value: 30,
+                                        color: "#fdfdfd"
+                                    }
+                                    ];
+                                    var myDoughnut = new Chart(document.getElementById("newchart").getContext("2d")).Doughnut(doughnutData);
+                                </script>
+                            </div>
+                            <!--NEW EARNING STATS -->
+                            <div class="panel terques-chart">
+                                <div class="panel-body">
+                                    <div class="chart">
+                                        <div class="centered">
+                                            <span>TODAY EARNINGS</span>
+                                            <strong>$ 890,00 | 15%</strong>
+                                        </div>
+                                        <br>
+                                        <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"><canvas width="238" height="75" style="display: inline-block; width: 238px; height: 75px; vertical-align: top;"></canvas></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--new earning end-->
+                            <!-- RECENT ACTIVITIES SECTION -->
+                            <h4 class="centered mt">RECENT ACTIVITY</h4>
+                            <!-- First Activity -->
+                            <div class="desc">
+                                <div class="thumb">
+                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                                <div class="details">
+                                    <p>
+                                        <muted>Just Now</muted>
+                                        <br>
+                                        <a href="#">Paul Rudd</a> purchased an item.<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Second Activity -->
+                            <div class="desc">
+                                <div class="thumb">
+                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                                <div class="details">
+                                    <p>
+                                        <muted>2 Minutes Ago</muted>
+                                        <br>
+                                        <a href="#">James Brown</a> subscribed to your newsletter.<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Third Activity -->
+                            <div class="desc">
+                                <div class="thumb">
+                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                                <div class="details">
+                                    <p>
+                                        <muted>3 Hours Ago</muted>
+                                        <br>
+                                        <a href="#">Diana Kennedy</a> purchased a year subscription.<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Fourth Activity -->
+                            <div class="desc">
+                                <div class="thumb">
+                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                                </div>
+                                <div class="details">
+                                    <p>
+                                        <muted>7 Hours Ago</muted>
+                                        <br>
+                                        <a href="#">Brando Page</a> purchased a year subscription.<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- USERS ONLINE SECTION -->
+                            <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
+                            <!-- First Member -->
+                            <div class="desc">
+                                <div class="thumb">
+                                    <img class="img-circle" src="img/ui-divya.jpg" width="35px" height="35px" align="">
+                                </div>
+                                <div class="details">
+                                    <p>
+                                        <a href="#">DIVYA MANIAN</a><br>
+                                        <muted>Available</muted>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Second Member -->
+                            <div class="desc">
+                                <div class="thumb">
+                                    <img class="img-circle" src="img/ui-sherman.jpg" width="35px" height="35px" align="">
+                                </div>
+                                <div class="details">
+                                    <p>
+                                        <a href="#">DJ SHERMAN</a><br>
+                                        <muted>I am Busy</muted>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Third Member -->
+                            <div class="desc">
+                                <div class="thumb">
+                                    <img class="img-circle" src="img/ui-danro.jpg" width="35px" height="35px" align="">
+                                </div>
+                                <div class="details">
+                                    <p>
+                                        <a href="#">DAN ROGERS</a><br>
+                                        <muted>Available</muted>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Fourth Member -->
+                            <div class="desc">
+                                <div class="thumb">
+                                    <img class="img-circle" src="img/ui-zac.jpg" width="35px" height="35px" align="">
+                                </div>
+                                <div class="details">
+                                    <p>
+                                        <a href="#">Zac Sniders</a><br>
+                                        <muted>Available</muted>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- CALENDAR-->
+                            <div id="calendar" class="mb">
+                                <div class="panel green-panel no-margin">
+                                    <div class="panel-body">
+                                        <div id="date-popover" class="popover top" style="cursor: pointer; margin-left: 33%; margin-top: -50px; width: 175px; display: none;" data-original-title="" title="">
+                                            <div class="arrow"></div>
+                                            <h3 class="popover-title" style="disadding: none;"></h3>
+                                            <div id="date-popover-content" class="popover-content"></div>
+                                        </div>
+                                        <div id="zabuto_calendar_rfb"><div class="zabuto_calendar" id="zabuto_calendar_rfb"><table class="table"><tbody><tr class="calendar-month-header"><th><div class="calendar-month-navigation" id="zabuto_calendar_rfb_nav-prev"><span><span class="fa fa-chevron-left text-transparent"></span></span></div></th><th colspan="5"><span>March 2019</span></th><th><div class="calendar-month-navigation" id="zabuto_calendar_rfb_nav-next"><span><span class="fa fa-chevron-right text-transparent"></span></span></div></th></tr><tr class="calendar-dow-header"><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr><tr class="calendar-dow"><td></td><td></td><td></td><td></td><td id="zabuto_calendar_rfb_2019-03-01" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-01_day" class="day">1</div></td><td id="zabuto_calendar_rfb_2019-03-02" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-02_day" class="day">2</div></td><td id="zabuto_calendar_rfb_2019-03-03" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-03_day" class="day">3</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-04" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-04_day" class="day">4</div></td><td id="zabuto_calendar_rfb_2019-03-05" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-05_day" class="day">5</div></td><td id="zabuto_calendar_rfb_2019-03-06" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-06_day" class="day">6</div></td><td id="zabuto_calendar_rfb_2019-03-07" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-07_day" class="day">7</div></td><td id="zabuto_calendar_rfb_2019-03-08" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-08_day" class="day">8</div></td><td id="zabuto_calendar_rfb_2019-03-09" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-09_day" class="day">9</div></td><td id="zabuto_calendar_rfb_2019-03-10" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-10_day" class="day">10</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-11" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-11_day" class="day">11</div></td><td id="zabuto_calendar_rfb_2019-03-12" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-12_day" class="day">12</div></td><td id="zabuto_calendar_rfb_2019-03-13" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-13_day" class="day">13</div></td><td id="zabuto_calendar_rfb_2019-03-14" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-14_day" class="day">14</div></td><td id="zabuto_calendar_rfb_2019-03-15" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-15_day" class="day">15</div></td><td id="zabuto_calendar_rfb_2019-03-16" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-16_day" class="day">16</div></td><td id="zabuto_calendar_rfb_2019-03-17" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-17_day" class="day">17</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-18" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-18_day" class="day">18</div></td><td id="zabuto_calendar_rfb_2019-03-19" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-19_day" class="day">19</div></td><td id="zabuto_calendar_rfb_2019-03-20" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-20_day" class="day">20</div></td><td id="zabuto_calendar_rfb_2019-03-21" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-21_day" class="day">21</div></td><td id="zabuto_calendar_rfb_2019-03-22" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-22_day" class="day">22</div></td><td id="zabuto_calendar_rfb_2019-03-23" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-23_day" class="day">23</div></td><td id="zabuto_calendar_rfb_2019-03-24" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-24_day" class="day">24</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_rfb_2019-03-25" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-25_day" class="day">25</div></td><td id="zabuto_calendar_rfb_2019-03-26" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-26_day" class="day">26</div></td><td id="zabuto_calendar_rfb_2019-03-27" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-27_day" class="day">27</div></td><td id="zabuto_calendar_rfb_2019-03-28" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-28_day" class="day">28</div></td><td id="zabuto_calendar_rfb_2019-03-29" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-29_day" class="day">29</div></td><td id="zabuto_calendar_rfb_2019-03-30" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-30_day" class="day">30</div></td><td id="zabuto_calendar_rfb_2019-03-31" class="dow-clickable"><div id="zabuto_calendar_rfb_2019-03-31_day" class="day">31</div></td></tr></tbody></table><div class="legend" id="zabuto_calendar_rfb_legend"><span class="legend-text"><span class="badge badge-event">00</span> Special event</span><span class="legend-block"><ul class="legend"><li class="event"></li><span>Regular event</span></ul></span></div></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- / calendar -->
+                        </div>*@
+                    <!-- /col-lg-3 -->
+                </div>
+                <!-- /row -->
+            </section>
         </section>
         <!--main content end-->
         <!--footer start-->
         <footer class="site-footer">
             <div class="text-center">
                 <p>
-                    &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+                    © Copyrights <strong>Dashio</strong>. All Rights Reserved
                 </p>
                 <div class="credits">
                     <!--
@@ -392,9 +559,9 @@
         <!--footer end-->
     </section>
 
-
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="~/Content/Template/lib/jquery/jquery.min.js"></script>
+
     <script src="~/Content/Template/lib/bootstrap/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="~/Content/Template/lib/jquery.dcjqaccordion.2.7.js"></script>
     <script src="~/Content/Template/lib/jquery.scrollTo.min.js"></script>
@@ -423,7 +590,6 @@
                 // (string | optional) the class name you want to apply to that specific message
                 class_name: 'my-sticky-class'
             });
-
             return false;
         });
     </script>
@@ -437,7 +603,6 @@
           $("#date-popover").click(function(e) {
             $(this).hide();
           });
-
           $("#my-calendar").zabuto_calendar({
             action: function() {
               return myDateFunction(this.id, false);
@@ -461,7 +626,6 @@
             ]
           });
         });
-
         function myNavFunction(id) {
           $("#date-popover").hide();
           var nav = $("#" + id).data("navigation");
@@ -470,9 +634,12 @@
         }
     </script>
 
+
     @RenderSection("js", required: false)
-
-
-</body>
-
 </html>
+
+
+
+
+
+
