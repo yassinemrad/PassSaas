@@ -12,5 +12,6 @@ namespace ServiceMap
     {
         Dictionary<String, int> userdate();
         User getbyuser(int id);
+        string FindMailOfUserById(int id);
     }
 }
