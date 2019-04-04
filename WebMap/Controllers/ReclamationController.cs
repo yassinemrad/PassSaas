@@ -24,7 +24,7 @@ namespace WebMap.Controllers
         {
 
             User u = us.GetById(Int32.Parse(User.Identity.GetUserId()));
-            if (u.Roles.Equals(0) )
+            if (u.Role.Equals("TeamMember") )
             {
                 return RedirectToAction("MyReclamation");
             }
@@ -39,11 +39,12 @@ namespace WebMap.Controllers
 
                 foreach (var i in r)
                 {
+                    var a = us.GetById(i.user);
                     reclamationViewModel rv = new reclamationViewModel();
                     rv.id = i.id;
                     rv.description = i.description;
                     rv.objet = i.objet;
-                    rv.user = i.user;
+                    rv.username =a.LastName;
                     rv.date = i.date;
                     l.Add(rv);
 
@@ -89,18 +90,27 @@ namespace WebMap.Controllers
 
         // POST: Reclamation/Create
         [HttpPost]
-        public ActionResult Create(string id,reclamationViewModel rec)
+        public ActionResult Create(int id, reclamationViewModel rec)
         {
-           // User u = us.GetById();
-            reclamation r = new reclamation();
-            r.etat = 1;
-            r.objet = rec.objet;
-            r.description = rec.description;
-            r.date= DateTime.Now.ToString("dd-MM-yyyy");
-           // r.user =new User() { Id = 1 };
-            rs.Add(r);
-            rs.Commit();
-            return RedirectToAction("MyReclamation");
+            User u = us.GetById(id);
+           
+              
+            
+         
+                reclamation r = new reclamation();
+                r.etat = 1;
+                r.objet = rec.objet;
+                r.description = rec.description;
+                r.date = DateTime.Now.ToString("dd-MM-yyyy");
+            r.user = id;
+                //uu.FirstName = u.FirstName;
+                //uu.Id = u.Id;
+                // r.user = new User();
+                rs.Add(r);
+                rs.Commit();
+
+                return RedirectToAction("MyReclamation");
+            
         }
 
         // GET: Reclamation/Edit/5
@@ -184,8 +194,9 @@ namespace WebMap.Controllers
         }
         public ActionResult MyReclamation()
         {
-            
-            var r = rs.GetByUser(Int32.Parse(User.Identity.GetUserId()));
+
+           var r = rs.GetByUser(Int32.Parse(User.Identity.GetUserId()));
+            ViewBag.us = Int32.Parse(User.Identity.GetUserId());
             List<reclamationViewModel> l = new List<reclamationViewModel>();
             foreach (var i in r)
             {
