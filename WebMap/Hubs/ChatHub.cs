@@ -1,22 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DomainMap.Entities;
 using Microsoft.AspNet.SignalR;
 using WebMap.Models;
+using Microsoft.AspNet.Identity;
+using WebMap.Controllers;
+using System.Web.Mvc;
+using System.Web;
+using Microsoft.AspNet.Identity.Owin;
+
+using System.Data;
 
 namespace WebMap.Hubs
 {
-    public class ChatHub :Hub
+    
+
+
+public class ChatHub :Hub
     {
+
+        //  string idd;
+        //   string id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+        string idu = ConnClass.iu.ToString();
         static List<Users> ConnectedUsers = new List<Users>();
         static List<Messages> CurrentMessage = new List<Messages>();
         ConnClass ConnC = new ConnClass();
-
+   
         public void Connect(string userName)
         {
+            //   Session["idU"] = User.Identity.GetUserId();
+            //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            var id = idu;
 
-            var id = "1";
-
+            //   var userrrr = System.Web.HttpContext.Current.User.Identity.GetUserName();
             if (ConnectedUsers.Count(x => x.ConnectionId == id) == 0)
             {
                 string UserImg = GetUserImage(userName);
@@ -32,7 +49,9 @@ namespace WebMap.Hubs
 
         public void SendMessageToAll(string userName, string message, string time)
         {
-           string UserImg = GetUserImage(userName);
+           
+           // Session["idU"] = System.Web.HttpContext.Current.User.Identity.GetUserName();
+            string UserImg = GetUserImage(userName);
             // store last 100 messages in cache
             AddMessageinCache(userName, message, time, UserImg);
 
@@ -63,7 +82,7 @@ namespace WebMap.Hubs
             string RetimgName = "/images/dummy.png";
             try
             {
-                string query = "select image from Users where name='" + username + "'";
+                string query = "select image from Users where UserName='" + username + "'";
                 string ImageName = ConnC.GetColumnVal(query, "image");
 
                 if (ImageName != "")
@@ -76,13 +95,14 @@ namespace WebMap.Hubs
 
         public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         {
-            var item = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
+         
+            var item = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == idu);
             if (item != null)
             {
                 ConnectedUsers.Remove(item);
 
-                var id = Context.ConnectionId;
-                Clients.All.onUserDisconnected(id, item.UserName);
+             //   var id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                Clients.All.onUserDisconnected(idu, item.UserName);
 
             }
             return base.OnDisconnected(stopCalled);
@@ -91,7 +111,8 @@ namespace WebMap.Hubs
         public void SendPrivateMessage(string toUserId, string message)
         {
 
-            string fromUserId = Context.ConnectionId;
+            //  string fromUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            string fromUserId = idu;
 
             var toUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == toUserId);
             var fromUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == fromUserId);

@@ -8,47 +8,63 @@ using System.Web;
 using System.Web.Mvc;
 using WebMap.Models;
 using Microsoft.AspNet.Identity;
-
+using System.Data;
+using System.Security.Claims;
 namespace WebMap.Controllers
 {
+    
     public class ReclamationController : Controller
     {
-        
+    
 
         ReclamationService rs = new ReclamationService();
+        UserService us = new UserService();
         // GET: Reclamation
         public ActionResult Index()
         {
-            var r = rs.listRecNonLu();
-            List<reclamationViewModel> l = new List<reclamationViewModel>();
-            var a = User.Identity.GetUserId();
-            ViewBag.user = a;
-            foreach (var i in r)
+
+            User u = us.GetById(Int32.Parse(User.Identity.GetUserId()));
+            if (u.Roles.Equals(0) )
             {
-                reclamationViewModel rv = new reclamationViewModel();
-                rv.id = i.id;
-                rv.description = i.description;
-                rv.objet = i.objet;
-                rv.user = i.user;
-                rv.date = i.date;
-                l.Add(rv);
-                
+                return RedirectToAction("MyReclamation");
             }
-           
-            return View(l);
+            else
+            {
+                //ViewBag.rr = System.Web.Security.Roles.GetRolesForUser(User.Identity.Name);
+
+                var r = rs.listRecNonLu();
+                List<reclamationViewModel> l = new List<reclamationViewModel>();
+                //Session["idU"] = User.Identity.GetUserId();
+                // ViewBag.user = ConnClass.iu;
+
+                foreach (var i in r)
+                {
+                    reclamationViewModel rv = new reclamationViewModel();
+                    rv.id = i.id;
+                    rv.description = i.description;
+                    rv.objet = i.objet;
+                    rv.user = i.user;
+                    rv.date = i.date;
+                    l.Add(rv);
+
+                }
+
+                return View(l);
+            }
         }
         public ActionResult Traiter()
         {
-           
+         
             var r = rs.listRecLu();
             List<reclamationViewModel> l = new List<reclamationViewModel>();
             foreach (var i in r)
             {
                 reclamationViewModel rv = new reclamationViewModel();
+                rv.user = i.user;
                 rv.id = i.id;
                 rv.description = i.description;
                 rv.objet = i.objet;
-                rv.user = i.user;
+               
                 rv.date = i.date;
                 l.Add(rv);
 
@@ -67,20 +83,21 @@ namespace WebMap.Controllers
         // GET: Reclamation/Create
         public ActionResult Create()
         {
+            ViewBag.user = User.Identity.GetUserId();
             return View();
         }
 
         // POST: Reclamation/Create
         [HttpPost]
-        public ActionResult Create(reclamationViewModel rec)
+        public ActionResult Create(string id,reclamationViewModel rec)
         {
-            
+           // User u = us.GetById();
             reclamation r = new reclamation();
             r.etat = 1;
             r.objet = rec.objet;
             r.description = rec.description;
             r.date= DateTime.Now.ToString("dd-MM-yyyy");
-           // r.user = User.Identity.GetUserName();
+           // r.user =new User() { Id = 1 };
             rs.Add(r);
             rs.Commit();
             return RedirectToAction("MyReclamation");
@@ -135,7 +152,7 @@ namespace WebMap.Controllers
             {
                 TempData["erreur"] = "oui";
 
-                //   ViewBag.erreur ="oui";
+                   
                 return RedirectToAction("MyReclamation");
             }
             else
@@ -167,7 +184,8 @@ namespace WebMap.Controllers
         }
         public ActionResult MyReclamation()
         {
-            var r = rs.GetByUser("yassin.mrad@yahoo.fr");
+            
+            var r = rs.GetByUser(Int32.Parse(User.Identity.GetUserId()));
             List<reclamationViewModel> l = new List<reclamationViewModel>();
             foreach (var i in r)
             {
