@@ -1,0 +1,59 @@
+﻿@model WebMap.Models.TasksModels
+@{
+    Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
+}
+
+<div>
+
+    <dl class="room-box">
+        <h5 class="text-primary"><a href="chat_room.html">Détails</a></h5>
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estimation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estimation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.realDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.realDuration)
+        </dd>
+
+    </dl>
+</div>

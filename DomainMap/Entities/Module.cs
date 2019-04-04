@@ -15,6 +15,7 @@ namespace DomainMap.Entities
         public String nom { get; set; }
         public Projet projet { get; set; }
         public virtual ICollection<Tasks> task { get; set; }
-
+        public int idtask { get; set; }
+        public int idprojet { get; set; }
     }
 }

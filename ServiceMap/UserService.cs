@@ -28,10 +28,17 @@ namespace ServiceMap
              //   var o = GetMany(t => (int)item == (t.dateEntree.Month)).Count();
                 int s = GetMany(t => (int)item == (t.LockoutEndDateUtc.Value.Month)).Count();
                 dicuser.Add(item.ToString(), s);
+            //    User.Identity.
             }
             return dicuser;
         }
-       
+       public User getbyuser(int id)
+        {
+            UserService userService = new UserService();
+           var req = GetById(id);
+        //    var x = GetMany(t =>  == t.Roles.ToList());
+            return req;
+        }
         
     }
 }

@@ -22,6 +22,8 @@ namespace WebMap.Models
         public String description { get; set; }
         public Cathegory cathegory { get; set; }
         public virtual ICollection<Module> modules { get; set; }
+        public int idmodul { get; set; }
 
     }
 }
+

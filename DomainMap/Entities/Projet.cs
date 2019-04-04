@@ -21,6 +21,8 @@ namespace DomainMap.Entities
         public string description { get; set; }
         public Cathegory cathegory { get; set; }
         public virtual ICollection<Module> modules { get; set; }
+        public int idmodul { get; set; }
+
 
     }
 }

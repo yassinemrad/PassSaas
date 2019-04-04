@@ -3,66 +3,56 @@
 @{
     Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
 }
-
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>Dashio - Bootstrap Admin Template</title>
+    <meta name="viewport" content="width=device-width" />
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Dashboard">
+        <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        <title>Dashio - Bootstrap Admin Template</title>
 
-    <!-- Favicons -->
-    <link href="img/favicon.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+        <!-- Favicons -->
+        <link href="img/favicon.png" rel="icon">
+        <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Bootstrap core CSS -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!--external css-->
-    <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap-datepicker/css/datepicker.css">
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap-daterangepicker/daterangepicker.css">
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!--external css-->
+        <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap-datepicker/css/datepicker.css">
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap-daterangepicker/daterangepicker.css">
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style-responsive.css" rel="stylesheet">
 
+    </head>
 </head>
 <body>
-    @using (Html.BeginForm("Edit", "Edit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+
         <h3><i class="fa fa-angle-right"></i> Vous pouvez Modifier la tache</h3>
 
         <div class="col-lg-12">
             <div class="">
-                <h4 class="mb"><i class="fa fa-angle-right"></i> Modifier la Tache</h4>
+                <h4 class="mb"><i class="fa fa-angle-right"></i> Modifier une Tache</h4>
                 <form class="form-horizontal style-form" method="get">
-
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                  
+                    @Html.HiddenFor(model => model.id)
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-sm-10">
-
+                        <div class="col-md-10">
                             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group">
-
-                        @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.date, "cette Description doit étre détailler", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -72,17 +62,27 @@
                         </div>
                     </div>
 
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <input type="submit" value="Modifier" class="btn btn-primary" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
     }
 
 
-
-
+</body>
+</html>
