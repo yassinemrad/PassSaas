@@ -78,12 +78,13 @@ namespace WebMap
     //}
     public class ConnClass
     {
+        public static int iu { get; set; }
         public SqlCommand cmd = new SqlCommand();
         public SqlDataAdapter sda;
         public SqlDataReader sdr;
         public DataSet ds = new DataSet();
-        public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MapDb"].ToString());
-
+        public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["paassaas"].ToString());
+        
         public bool IsExist(string Query)
         {
             bool check = false;

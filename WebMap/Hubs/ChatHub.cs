@@ -20,18 +20,18 @@ namespace WebMap.Hubs
 public class ChatHub :Hub
     {
 
-       
+        //  string idd;
         //   string id = System.Web.HttpContext.Current.User.Identity.GetUserId();
-        string id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+        string idu = ConnClass.iu.ToString();
         static List<Users> ConnectedUsers = new List<Users>();
         static List<Messages> CurrentMessage = new List<Messages>();
         ConnClass ConnC = new ConnClass();
-      
+   
         public void Connect(string userName)
         {
-         //   Session["idU"] = User.Identity.GetUserId();
+            //   Session["idU"] = User.Identity.GetUserId();
             //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-             var id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            var id = idu;
 
             //   var userrrr = System.Web.HttpContext.Current.User.Identity.GetUserName();
             if (ConnectedUsers.Count(x => x.ConnectionId == id) == 0)
@@ -96,13 +96,13 @@ public class ChatHub :Hub
         public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         {
          
-            var item = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == System.Web.HttpContext.Current.User.Identity.GetUserId());
+            var item = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == idu);
             if (item != null)
             {
                 ConnectedUsers.Remove(item);
 
              //   var id = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                Clients.All.onUserDisconnected(id, item.UserName);
+                Clients.All.onUserDisconnected(idu, item.UserName);
 
             }
             return base.OnDisconnected(stopCalled);
@@ -112,7 +112,7 @@ public class ChatHub :Hub
         {
 
             //  string fromUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            string fromUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            string fromUserId = idu;
 
             var toUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == toUserId);
             var fromUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == fromUserId);

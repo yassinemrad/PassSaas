@@ -339,17 +339,17 @@
                         </ul>
                     </li>
                     <li class="sub-menu dcjq-parent-li">
-                        <a href="javascript:;" class="dcjq-parent">
+                        <a href="@Url.Action("Chat","Chat")">
                             <i class="fa fa-tasks"></i>
-                            <span>Forms</span>
+                            <span>Chat</span>
                             <span class="dcjq-icon"></span>
                         </a>
-                        <ul class="sub" style="display: none;">
-                            <li><a href="form_component.html">Form Components</a></li>
-                            <li><a href="advanced_form_components.html">Advanced Components</a></li>
-                            <li><a href="form_validation.html">Form Validation</a></li>
-                            <li><a href="contactform.html">Contact Form</a></li>
-                        </ul>
+                        @*<ul class="sub" style="display: none;">
+                <li><a href="form_component.html">Form Components</a></li>
+                <li><a href="advanced_form_components.html">Advanced Components</a></li>
+                <li><a href="form_validation.html">Form Validation</a></li>
+                <li><a href="contactform.html">Contact Form</a></li>
+            </ul>*@
                     </li>
                     <li class="sub-menu dcjq-parent-li">
                         <a href="javascript:;" class="dcjq-parent">
@@ -364,10 +364,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="inbox.html">
+                       
+                        <a href="@Url.Action("Index","Reclamation")">
                             <i class="fa fa-envelope"></i>
-                            <span>Mail </span>
-                            <span class="label label-theme pull-right mail-info">2</span>
+                            <span>Reclamation </span>
+                            <span class="label label-theme pull-right mail-info"></span>
                         </a>
                     </li>
                     <li class="sub-menu dcjq-parent-li">

@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using DomainMap.Entities;
 using Microsoft.AspNet.Identity;
+using ServiceMap;
 
 namespace WebMap.Controllers
 {
     public class ChatController : Controller
     {
         // GET: Chat
-        
+        UserService us = new UserService();
+    
+        ConnClass cc = new ConnClass();
         public ActionResult Index()
         {
             
@@ -19,10 +22,13 @@ namespace WebMap.Controllers
         }
         public ActionResult Chat()
         {
-            
-            //localStorage.setItem("a", "a");
-            ViewBag.user = User.Identity.GetUserId();
-           
+
+      
+           User u = us.GetById(Int32.Parse(User.Identity.GetUserId()));
+
+            ConnClass.iu = Int32.Parse(User.Identity.GetUserId());
+            ViewBag.userr = User.Identity.GetUserId();
+          ViewBag.user = u.FirstName.ToString();
             return View();
         }
     }
