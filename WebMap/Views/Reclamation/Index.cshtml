@@ -47,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.username)
             </td>
             <td>
-                @Html.ActionLink("Traitement", "Traitement", new { id = item.id })
+                @Html.ActionLink("Traitement", "Traitement", new { id = item.id ,mail=item.mail,suj=item.objet},null)
 
             </td>
         </tr>
