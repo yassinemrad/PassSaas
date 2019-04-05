@@ -39,14 +39,6 @@ namespace WebMap.Models
         public int iduser { get; set; }
         public int idmodul { get; set; }
         public int idprojet { get; set; }
-        [Display(Name = "cette Tache doit étre terminer dans ")]
-        public String diff { get; set; }
-        [Display(Name = "Il vous reste seulement ")]
-        public String rest { get; set; }
-        [Display(Name = "Nom du responsable de cette tache ")]
-        public String nuser { get; set; }
-        [Display(Name = "Nom de Module ")]
-        public String nmod { get; set; }
         public User user { get; set; }
 
 

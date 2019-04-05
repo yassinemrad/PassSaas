@@ -612,7 +612,6 @@
     <Content Include="Views\Tasks\Details.cshtml" />
     <Content Include="Views\Module\Create.cshtml" />
     <Content Include="Views\Module\Index.cshtml" />
-    <Content Include="Views\Tasks\Affectation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
