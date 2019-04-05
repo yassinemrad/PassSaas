@@ -11,16 +11,26 @@
 
 <!DOCTYPE HTML>
 <html>
-<head>
-    <canvas id="myChart" width="400" height="400"></canvas>
-    <script>
-        var ctx = document.getElementById('pie').getContext('2d');
-        var myChart = new Chart(ctx, {
-    </script>
+<head><script> function printc() {
+     cchart = $("#pie").ejChart("instance");
+     cchart.CreateDocument();
+    }</script>
+    @{Html.BeginForm("CreateDocument", "Stat", FormMethod.Get);
+        {
+      <div>
+          <button type="submit" class="activity-panel" id="c" onclick="CreateDocument(cchart)"></button>
+
+          <input type="submit" value="Create Document" style="width:150px;height:27px" />
+      </div>
+        }
+        Html.EndForm();
+    }
+   
+      
     <script>
 window.onload = function () {
 
-    var chart = new CanvasJS.Chart("hero-area", {
+    var chart = new CanvasJS.Chart("pie", {
 	theme: "light1", // "light1", "light2", "dark1", "dark2"
 	exportEnabled: true,
 	animationEnabled: true,
@@ -46,20 +56,16 @@ chart.render();
     </script>
 </head>
 <body>
-    <div class="tab-pane" id="chartjs">
-        <div class="row mt">
-            <div class="col-lg-6">
-                <div class="content-panel">
-                    <h4><i class="fa fa-angle-right"></i> Pie</h4>
-                    <div class="panel-body text-center">
-                        <canvas id="pie" height="300" width="400"></canvas>
-                    </div>
-                </div>
+    <div class="col-lg-6">
+        <div class="content-panel" >
+            <h4><i class="fa fa-angle-right"></i> Pie</h4>
+            <div class="panel-body text-center">
+                <div id="pie" style="height: 370px; width: 100%;"></div>
             </div>
         </div>
     </div>
 
-    <div class="row mt">
+    
         <div class="col-lg-6">
             <div class="content-panel">
                 <h4><i class="fa fa-angle-right"></i> Chart Example 3</h4>
@@ -68,7 +74,7 @@ chart.render();
                 </div>
             </div>
         </div>
-    </div>
+    
     <div id="chartContainer" style="height: 300px; width: 400px;"></div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>

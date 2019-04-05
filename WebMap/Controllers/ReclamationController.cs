@@ -10,6 +10,10 @@ using WebMap.Models;
 using Microsoft.AspNet.Identity;
 using System.Data;
 using System.Security.Claims;
+using System.Net.Mail;
+using System.Net;
+using System.Text;
+
 namespace WebMap.Controllers
 {
     
@@ -45,6 +49,7 @@ namespace WebMap.Controllers
                     rv.description = i.description;
                     rv.objet = i.objet;
                     rv.username =a.LastName;
+                    rv.mail = a.UserName;
                     rv.date = i.date;
                     l.Add(rv);
 
@@ -184,12 +189,53 @@ namespace WebMap.Controllers
             return RedirectToAction("MyReclamation");
 
         }
-        public ActionResult Traitement(int id)
+        public ActionResult Traitement(int id,string mail,string suj )
         {
             reclamation r = rs.GetById(id);
             r.etat = 0;
             rs.Update(r);
             rs.Commit();
+            var senderemail = new MailAddress("mehrezyassin.mrad@esprit.tn");
+            var receiveremail = new MailAddress(mail);
+            MailMessage mess = new MailMessage(senderemail, receiveremail);
+            mess.BodyEncoding = Encoding.UTF8;
+            var password = "yassine<3cyrine";
+            
+
+            //var body = string.Concat("Bonjour je suis votre Docteur Mr/Mme " + FindFirstNameOfUserById(Int32.Parse(System.Web.HttpContext.Current.User.Identity.GetUserId())) + " " + FindLastNameOfUserById(Int32.Parse(System.Web.HttpContext.Current.User.Identity.GetUserId())) + " , je voulais vous informer que je vous ai planifié un nouveau rendez-vous avec " + Request["NomMedecin"].ToString() + " Spécialisé en " + Request["Specialite"].ToString() + " veuillez consulter votre parcours et merci d'attendre la confirmation du docteur que je vous ai recommandé");
+            var body = "your mail of  "+suj.ToUpper()+"  is treat";
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+
+            //Host =,
+            //  Port = 587,
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(senderemail.Address, password);
+
+
+  
+
+
+                mess.Subject = "Reclamation";
+                mess.Body = body;
+
+
+            try
+            {
+                smtp.Send(mess);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;  
+            }
+
+
+
+
+
             return RedirectToAction("Index");
         }
         public ActionResult MyReclamation()

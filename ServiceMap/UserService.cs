@@ -39,6 +39,12 @@ namespace ServiceMap
         //    var x = GetMany(t =>  == t.Roles.ToList());
             return req;
         }
-        
+       public string FindMailOfUserById(int id)
+        {
+            User x = GetById(id);
+            return x.Email;
+            
+        }
+
     }
 }

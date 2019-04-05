@@ -9,9 +9,12 @@ using ServiceMap;
 using DomainMap.Entities;
 using Rotativa;
 using Microsoft.AspNet.Identity;
-using System.IO;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using iTextSharp.text;
-using iTextSharp.text.pdf;
+using Image = iTextSharp.text.Image;
 
 namespace WebMap.Controllers
 {
@@ -228,11 +231,97 @@ namespace WebMap.Controllers
 
             return File(fileContents, contentType, fileName);
         }
-    
 
+
+
+        public void DrawPdfTemplate(
+   PdfTemplate template,
+   PointF location
+)
+        { }
+         public ActionResult CreateDocument()
+    //    public PdfTemplate CreateTemplate()
+        {
+            //Create an instance of PdfDocument.
+            using (PdfDocument document = new PdfDocument())
+            {
+                //Add a page to the document
+                PdfPage page = document.Pages.Add();
+
+                //Create PDF graphics for the page
+                PdfGraphics graphics = page.Graphics;
+
+                //Set the standard font
+                //   PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
+
+                //Draw the text
+                // graphics.DrawString("Hello World!!!", font, PdfBrushes.Black, new PointF(0, 0));
+                //    using (var src = new Bitmap("C:/Users/ELYES/source/repos/pidev/WebMap/Views/Stat/categparprojet.cshtml"))
+                //  using (var bmp = new Bitmap(100, 100, PixelFormat.Format32bppPArgb))
+                //using (var src = new Bitmap("c:/temp/trans.png"))
+                //   using (var bmp = new Bitmap(100, 100, PixelFormat.Format32bppPArgb))
+                // using (var gr = Graphics.FromImage(bmp))
+                // {
+                //   gr.Clear(Color.Blue);
+                //   gr.DrawImage(src, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                // bmp.Save("c:/temp/result.png", ImageFormat.Png);
+                // }
+                PdfDocument pdfDocument = new PdfDocument();
+                //Adds a page to the PDF document.
+                PdfPage pdfPage = pdfDocument.Pages.Add();
+
+                PdfTemplate template = new PdfTemplate(100, 50);
+                //Draws a rectangle into the graphics of the template.
+                template.Graphics.DrawRectangle(PdfBrushes.BurlyWood, new System.Drawing.RectangleF(0, 0, 100, 50));
+             //   template.Graphics.DrawPie();
+                PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 14);
+                PdfBrush brush = new PdfSolidBrush(Color.Black);
+              //  graphics.DrawPdfTemplate(V, PointF.Empty);
+                template.Graphics.DrawString("Hello World", font, brush, 5, 5);
+                //Draws the template into the page graphics of the document.
+                pdfPage.Graphics.DrawPdfTemplate(template, PointF.Empty);
+                //Saves the document.
+            //    pdfDocument.Save("Output.pdf");
+                //Close the document
+                
+                //  graphics.DrawPdfTemplate("categparprojet")
+                // Open the document in browser after saving it
+               pdfDocument.Save("Output.pdf", HttpContext.ApplicationInstance.Response, HttpReadType.Save);
+                pdfDocument.Close(true);
+                //   var report = new ActionAsPdf("categparprojet");
+                //  return report;
+            }
+          //  return PdfTemplate=PdfDocument.ProgressEventHandler.Combine(durationtask(),);
+          return View();
+        }
+
+        //public ActionResult savepdfimg()
+        //{
+        //    string pdfpath = Server.MapPath("PDFs");
+        //    string imagepath = Server.MapPath("Images");
+        //    iTextSharp.text.Document doc = new iTextSharp.text.Document();
+        //    try
+        //    {
+        //        iTextSharp.text.pdf.PdfWriter.GetInstance(doc, new System.IO.FileStream(pdfpath + "/Images.pdf", System.IO.FileMode.Create));
+        //        doc.Open();
+
+        //        doc.Add(new Paragraph("PNG"));
+        //        Image gif = Image.GetInstance(imagepath + "/Chart (1).png");
+        //        doc.Add(gif);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Log error;
+        //    }
+        //    finally
+        //    {
+        //        doc.Close();
+        //    }
+        //    return View();
+        //}
 
     // GET: Stat/Details/5
-    public ActionResult Details(int id)
+        public ActionResult Details(int id)
         {
             return View();
         }
