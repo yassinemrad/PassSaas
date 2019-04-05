@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicePattern", "ServicePa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMap", "WebMap\WebMap.csproj", "{357A46C3-2089-44CE-825D-C560F1834A3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiMap", "WebApiMap\WebApiMap.csproj", "{7EABA9F8-7D51-4B1C-95E3-10D58482104D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{357A46C3-2089-44CE-825D-C560F1834A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{357A46C3-2089-44CE-825D-C560F1834A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{357A46C3-2089-44CE-825D-C560F1834A3F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EABA9F8-7D51-4B1C-95E3-10D58482104D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EABA9F8-7D51-4B1C-95E3-10D58482104D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EABA9F8-7D51-4B1C-95E3-10D58482104D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EABA9F8-7D51-4B1C-95E3-10D58482104D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
