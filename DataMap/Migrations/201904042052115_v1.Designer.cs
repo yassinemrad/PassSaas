@@ -13,7 +13,7 @@ namespace DataMap.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201904040117053_v1"; }
+            get { return "201904042052115_v1"; }
         }
         
         string IMigrationMetadata.Source
