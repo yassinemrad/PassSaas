@@ -13,6 +13,8 @@ using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using iTextSharp.text;
+using Image = iTextSharp.text.Image;
 
 namespace WebMap.Controllers
 {
@@ -237,7 +239,8 @@ namespace WebMap.Controllers
    PointF location
 )
         { }
-        public ActionResult CreateDocument()
+         public ActionResult CreateDocument()
+    //    public PdfTemplate CreateTemplate()
         {
             //Create an instance of PdfDocument.
             using (PdfDocument document = new PdfDocument())
@@ -270,6 +273,7 @@ namespace WebMap.Controllers
                 PdfTemplate template = new PdfTemplate(100, 50);
                 //Draws a rectangle into the graphics of the template.
                 template.Graphics.DrawRectangle(PdfBrushes.BurlyWood, new System.Drawing.RectangleF(0, 0, 100, 50));
+             //   template.Graphics.DrawPie();
                 PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 14);
                 PdfBrush brush = new PdfSolidBrush(Color.Black);
               //  graphics.DrawPdfTemplate(V, PointF.Empty);
@@ -277,20 +281,44 @@ namespace WebMap.Controllers
                 //Draws the template into the page graphics of the document.
                 pdfPage.Graphics.DrawPdfTemplate(template, PointF.Empty);
                 //Saves the document.
-               // pdfDocument.Save("Output.pdf");
+            //    pdfDocument.Save("Output.pdf");
                 //Close the document
                 
                 //  graphics.DrawPdfTemplate("categparprojet")
                 // Open the document in browser after saving it
-                pdfDocument.Save("Output.pdf", HttpContext.ApplicationInstance.Response, HttpReadType.Save);
+               pdfDocument.Save("Output.pdf", HttpContext.ApplicationInstance.Response, HttpReadType.Save);
                 pdfDocument.Close(true);
                 //   var report = new ActionAsPdf("categparprojet");
                 //  return report;
             }
-            return View();
+          //  return PdfTemplate=PdfDocument.ProgressEventHandler.Combine(durationtask(),);
+          return View();
         }
 
-        
+        //public ActionResult savepdfimg()
+        //{
+        //    string pdfpath = Server.MapPath("PDFs");
+        //    string imagepath = Server.MapPath("Images");
+        //    iTextSharp.text.Document doc = new iTextSharp.text.Document();
+        //    try
+        //    {
+        //        iTextSharp.text.pdf.PdfWriter.GetInstance(doc, new System.IO.FileStream(pdfpath + "/Images.pdf", System.IO.FileMode.Create));
+        //        doc.Open();
+
+        //        doc.Add(new Paragraph("PNG"));
+        //        Image gif = Image.GetInstance(imagepath + "/Chart (1).png");
+        //        doc.Add(gif);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Log error;
+        //    }
+        //    finally
+        //    {
+        //        doc.Close();
+        //    }
+        //    return View();
+        //}
 
     // GET: Stat/Details/5
         public ActionResult Details(int id)
