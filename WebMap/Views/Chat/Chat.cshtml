@@ -440,82 +440,77 @@
     <body>
         <form id="form1" runat="server">
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-            <div class="content-wrapper">
+           
 
                 <header class="main-header" style="background: #bedaeb">
            
                 </header>
 
-                <div class="row">
+                <div class="chat-room mt">
 
-                    <div class="col-md-8">
-                        <!-- DIRECT CHAT PRIMARY -->
-                        <div class="box box-primary direct-chat direct-chat-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title" style="color: dimgrey;">Welcome to Discussion Room <span id='spanUser'></span></h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" id="btnClearChat" data-toggle="tooltip" title="Clear Chat">
-                                        <i class="fa fa-trash-o"></i>
-                                    </button>
+                    <!-- DIRECT CHAT PRIMARY -->
+                    <aside class="mid-side">
+                        @*<div class="box box-primary direct-chat direct-chat-primary">*@
 
-                                    <span data-toggle="tooltip" id="MsgCountMain" title="0 New Messages" class="badge bg-gray">0</span>
-                                </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="chat-room-head">
+                            <h3>Welcome to Chat <span id='spanUser'></span></h3>
+
+                        </div>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" id="btnClearChat" data-toggle="tooltip" title="Clear Chat">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                            <span data-toggle="tooltip" id="MsgCountMain" title="0 New Messages" class="badge bg-gray">0</span>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!-- Conversations are loaded here -->
+                            <div class="box-body" id="chat-box">
                                 <!-- Conversations are loaded here -->
-                                <div class="box-body" id="chat-box">
-                                    <!-- Conversations are loaded here -->
-
-                                    <div id="divChatWindow" class="direct-chat-messages" style="height: 450px;">
-                                    </div>
-
-                                    <div class="direct-chat-contacts">
-                                        <ul class="contacts-list" id="ContactList">
-
-                                            <!-- End Contact Item -->
-                                        </ul>
-                                        <!-- /.contatcts-list -->
-                                    </div>
-                                    <!-- /.direct-chat-pane -->
-
+                                <div id="divChatWindow" class="direct-chat-messages" style="height: 450px;">
                                 </div>
-
+                                @*<div class="direct-chat-contacts">
+                    <ul class="contacts-list" id="ContactList">
+                        <!-- End Contact Item -->
+                    </ul>
+                    <!-- /.contatcts-list -->
+                </div>*@
+                                <!-- /.direct-chat-pane -->
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer">
-
-                                <textarea id="txtMessage" class="form-control"></textarea>
-
-                                <div class="input-group" style="float: right;">
-                                    <input class="form-control" style="visibility: hidden;" />
-                                    <span class="input-group-btn">
-                                        <input type="button" class="btn btn-primary btn-flat" id="btnSendMsg" value="send" />
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-                            <!-- /.box-footer-->
                         </div>
-                        <!--/.direct-chat -->
-                    </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <textarea id="txtMessage" class="form-control"></textarea>
+                            <div class="input-group" style="float: right;">
+                                <input class="form-control" style="visibility: hidden;" />
+                                <span class="input-group-btn">
+                                    <input type="button" class="btn btn-primary btn-flat" id="btnSendMsg" value="send" />
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.box-footer-->
+                        @*</div>*@
+                    </aside>
+
+                    <!--/.direct-chat -->
+                    <aside class="right-side">
+
+                        <div class="user-head">
+                            
+                                
+                                    <h3 class="box-title">Online Users <span id='UserCount'></span></h3>
+                               
+                           
+                        </div>
+                                <div class="box-footer box-comments" id="divusers">
+                                </div>
+                            
+                       
+
+                    </aside>
+                </div>
                     <!-- /.col -->
-                    <div class="col-md-4">
-
-                        <div class="box box-solid box-primary">
-
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Online Users <span id='UserCount'></span></h3>
-                            </div>
-
-                            <div class="box-footer box-comments" id="divusers">
-                            </div>
-
-                        </div>
-                    </div>
-
+                 
 
                     <div class="row">
                         <div class="col-md-12">
@@ -525,13 +520,10 @@
                             <!--/.private-chat -->
                         </div>
                     </div>
-
                     <!-- /.col -->
                     <!-- /.col -->
                     <!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </div>
+              
 
             <span id="time"></span>
             <input id="hdId" type="hidden" />
