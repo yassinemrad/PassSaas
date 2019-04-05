@@ -11,17 +11,22 @@
 
 <!DOCTYPE HTML>
 <html>
-<head>
-    @{Html.BeginForm("CreateDocument", "Stat", FormMethod.Get);
+<head><script> function printc() {
+     cchart = $("#pie").ejChart("instance");
+     cchart.CreateDocument();
+    }</script>
+    @{Html.BeginForm("CreateDocument", "Stat", FormMethod.Get,new {chart=cchart });
         {
-            <div>
+      <div>
+          <button type="submit" class="activity-panel" id="c" onclick="CreateDocument(cchart)"></button>
 
-                <input type="submit" value="Create Document" style="width:150px;height:27px" />
-            </div>
+          <input type="submit" value="Create Document" style="width:150px;height:27px" />
+      </div>
         }
         Html.EndForm();
     }
-
+   
+      
     <script>
 window.onload = function () {
 
