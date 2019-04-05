@@ -15,7 +15,7 @@
      cchart = $("#pie").ejChart("instance");
      cchart.CreateDocument();
     }</script>
-    @{Html.BeginForm("CreateDocument", "Stat", FormMethod.Get,new {chart=cchart });
+    @{Html.BeginForm("CreateDocument", "Stat", FormMethod.Get);
         {
       <div>
           <button type="submit" class="activity-panel" id="c" onclick="CreateDocument(cchart)"></button>
