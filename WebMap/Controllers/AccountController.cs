@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebMap.Models;
 using DomainMap.Entities;
+using System.IO;
 
 namespace WebMap.Controllers
 {
@@ -148,15 +149,16 @@ namespace WebMap.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model,HttpPostedFileBase Image)
         {
             if (model.Role == "TeamLeader")
             {
                 if (ModelState.IsValid)
                 {
 
-                    var user = new TeamLeader { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password ,Role=model.Role};
+                    var user = new TeamLeader { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password ,Role=model.Role,image=Image.FileName};
                     var result = await UserManager.CreateAsync(user, model.Password);
+                    Image.SaveAs(Path.Combine(Server.MapPath("/images/DP/"),Image.FileName));
                     if (result.Succeeded)
                     {
                         //  await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -180,8 +182,10 @@ namespace WebMap.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new TeamMember { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password, Role = model.Role };
+                    var user = new TeamMember { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password, Role = model.Role, image = Image.FileName };
                     var result = await UserManager.CreateAsync(user, model.Password);
+                    Image.SaveAs(Path.Combine(Server.MapPath("/images/DP/"), Image.FileName));
+
                     if (result.Succeeded)
                     {
                         //  await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -427,8 +431,7 @@ namespace WebMap.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+       
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

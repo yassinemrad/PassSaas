@@ -65,6 +65,7 @@ namespace WebMap.Models
 
     public class RegisterViewModel
     {
+        public string image { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         [Required]

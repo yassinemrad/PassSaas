@@ -13,6 +13,7 @@ namespace DomainMap.Entities
     public class User : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
         public String LastName { get; set; }
+        public String image { get; set; }
         public String FirstName { get; set; }
         public String Role { get; set; }
         public ICollection<Message> messages { get; set; }
