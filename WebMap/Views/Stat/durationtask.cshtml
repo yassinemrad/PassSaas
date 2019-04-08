@@ -10,18 +10,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <p>
-        @Html.ActionLink("Convert View To PDF", "PrintViewToPdf")
-    </p>
-  <div>  
-    <button divclass = "btnbtn-success" > @Html.ActionLink("Create Pdf", "PrintViewToPdf", "Stat") </button></div>
     
+  
   
     <script>
         window.onload = function () {
 
             var chart = new CanvasJS.Chart("hero-graph", {
-                animationEnabled: true,
+                animationEnabled: false,
                 exportEnabled: true,
                 title: {
                     text: ""
@@ -40,11 +36,36 @@
             });
 
             chart.render();
+            var canvas = $("#hero-graph .canvasjs-chart-canvas").get(0);
+            var dataURL = canvas.toDataURL();
+            var jsonData = @Html.Raw(ViewBag.DataPoints1);
+            var cat = [];
+            var pourc = [];
+            var datap = [];
+            jsonData.forEach(item => cat.push(item.label));
+            jsonData.forEach(item => pourc.push(item.y));
+
+            for (var i = 0; i < cat.length; i++) {
+                var data = [];
+                data.push(cat[i]);
+                data.push(pourc[i] + "h");
+                datap.push(data);
+            }
+                $("#btn_report").click(function () {
+                    var pdf = new jsPDF();
+
+                    pdf.addImage(dataURL, 'JPEG', 0, 20);
+                    pdf.autoTable({
+                        margin: { top: 100 },
+                        head: [['Tache', 'Real duration']],
+                        body: datap
+                    });
+                    pdf.save("download2.pdf");
+                });
+            
+
         }
-        function printc() {
-            cchart = $("#hero-graph").ejChart("instance");
-            cchart.print("hero-graph");
-        }
+        
 
     </script>
 
@@ -57,27 +78,29 @@
     </script>
 </head>
 <body>
-    <a href="@Url.Action("ExportPDF","Stat")">EXPORT PDF</a>
-    
-           
-                <div class="row mt">
-                    <div class="col-lg-6">
-                        <div class="content-panel">
-                            <h4><i class="fa fa-angle-right"></i> Chart Example 1</h4>
-                            <div class="panel-body">
-                                <div id="hero-graph" class="graph" style="height: 370px; width: 100%;">
-
-                                </div>
-
-                                <button type="button" class="activity-panel" id="c" onclick="print()"></button>
-
-                            </div>
-                        </div>
-                    </div></div>
-                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
+
+    <div class="row mt">
+        <div style="height:500% ; width:133%">
+            <div class="content-panel">
+                <h4><i class="fa fa-angle-right"></i> Chart Example 1</h4>
+                <div class="panel-body">
+                    <div id="hero-graph" class="graph" style="height: 370px; width: 100%;">
+
+                    </div> <input id="btn_report" type="submit" value="report" style="width:150px;height:27px" />
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <script src="~/Scripts/jspdf.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable"></script>
 
 </body>
 </html>  

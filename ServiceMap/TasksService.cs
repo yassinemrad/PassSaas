@@ -99,7 +99,7 @@ namespace ServiceMap
             //  var c = GetMany(t => t.etat == str.ToString);
             var c = GetMany(t => t.etat == TODOo).Count();
             var n = GetMany(t => t.modules.projet.id == idProjet).Count();
-            var x = (c / n) * 100;
+            var x = c / n * 100;
 
 
             return x;

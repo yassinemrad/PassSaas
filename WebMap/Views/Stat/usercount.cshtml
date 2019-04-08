@@ -4,6 +4,7 @@
     ViewBag.Title = "durationtask";
     Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
 }
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -29,7 +30,7 @@ window.onload = function () {
             image: false,
             print: false
         },
-       
+
     axisY: {
             title: "Values"
         },
@@ -57,31 +58,28 @@ window.onload = function () {
     chart.render();
 
         }
-        function printc() {
-            cchart = $("#chart-1").ejChart("instance");
-            cchart.print("chart-1");
-        }
+       
     </script>
 </head>
 <body>
 
     <div id="chart2" height="100" width="100"></div>
-    <div class="row mt">
-        <div class="col-lg-6">
+   
+        <div style="width:135%">
             <div class="content-panel">
                 <h4><i class="fa fa-angle-right"></i> Bar</h4>
                 <div class="panel-body text-center">
                     <div id="bar" style="height: 370px; width: 100%;"></div>
                 </div>
             </div>
-                                <button type="button" class="activity-panel" id="c" onclick="print()"></button>
+            
 
         </div>
 
-       
 
-              
-            
+
+
+
 
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>

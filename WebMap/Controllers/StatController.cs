@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using iTextSharp.text;
 using Image = iTextSharp.text.Image;
+using Syncfusion.Pdf.Grid;
 
 namespace WebMap.Controllers
 {
@@ -38,11 +39,7 @@ namespace WebMap.Controllers
         {
             List<DataPoint> dataPoints = new List<DataPoint>();
             Dictionary<String, int> tempDic = new Dictionary<String, int>();
-            //  List<projet> projet = projectService.listproj();
-            //foreach (var item in collection)
-            //{
-
-            //}
+           
             tempDic = taskService.EtatCount();
             foreach (var element in tempDic)
             {
@@ -53,6 +50,7 @@ namespace WebMap.Controllers
 
             return View();
         }
+       
         public ActionResult usercount()
         {
             Dictionary<String, Dictionary<String, int>> diccount = taskService.etatCountUser();
@@ -63,6 +61,7 @@ namespace WebMap.Controllers
             foreach (var item in diccount)
             {
                 username.Add(item.Key);
+                //value=diccount *** //key=2eme dic
                 toDoDP.Add(new DataPoint(item.Value.ToArray()[0].Key.ToString(), item.Value.ToArray()[0].Value));
                 doingDP.Add(new DataPoint(item.Value.ToArray()[1].Key, item.Value.ToArray()[1].Value));
                 doneDP.Add(new DataPoint(item.Key, item.Value.ToArray()[2].Value));
@@ -115,17 +114,12 @@ namespace WebMap.Controllers
 
             List<ProjetModels> listP = mapi();
             List<DataPoint> dataPoints = new List<DataPoint>();
-            dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.ToDo.ToString(), taskService.EtatProgresstodo(id)));
-            dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.Doing.ToString(), taskService.EtatProgresdoing(id)));
-            dataPoints.Add(new DataPoint(DomainMap.Entities.Etat.Done.ToString(), taskService.EtatProgressdone(id)));
+            dataPoints.Add(new DataPoint(Models.Etat.ToDo.ToString(), taskService.EtatProgresstodo(id)));
+            dataPoints.Add(new DataPoint(Models.Etat.Doing.ToString(), taskService.EtatProgresdoing(id)));
+            dataPoints.Add(new DataPoint(Models.Etat.Done.ToString(), taskService.EtatProgressdone(id)));
             // dataPoints.Add(System.Drawing.Printing.PageSetup()
 
-
-            //  Chart_Contenu.Printing.PrintPreview()
-
-
-            //  Chart_Contenu.Printing.Print(False)
-
+            
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
             ViewBag.ListProjet = listP;
@@ -151,10 +145,10 @@ namespace WebMap.Controllers
         public ActionResult usercountperyear()
         { User h = userservice.GetById(Int32.Parse(User.Identity.GetUserId()));
             //  var s = userservice.getbyuser(User.Identity.GetUserId().);
-            var r = (WebMap.Models.Role.TeamLeader.ToString());
+        //    var r = (WebMap.Models.Role.TeamLeader.ToString());
             //  dvm.Etat = (BibliothequeWeb.Models.Etat)item.Etat;
-            ViewBag.rs = User.Identity.GetUserId();
-            ViewBag.users = r;
+            //ViewBag.rs = User.Identity.GetUserId();
+          //  ViewBag.users = r;
             List<DataPoint> dataPoints = new List<DataPoint>();
             Dictionary<String, int> userdic = new Dictionary<String, int>();
             //   List<Projet> projet = projectService.listproj();
@@ -200,45 +194,18 @@ namespace WebMap.Controllers
             return View();
 
         }
-        public ActionResult ExportPDF()
-        {
-            ActionAsPdf result = new ActionAsPdf("durationtask")
-
-            // return new ActionAsPdf("durationtask")
-            {
-                FileName = Server.MapPath("~/content/DataPoints1.pdf")
-            };
-            return result;
-        }
+       
 
 
-        public ActionResult PrintViewToPdf()
-        {
-            var report = new ActionAsPdf("durationtask");
-            return report;
-        }
+      
 
 
-        public ActionResult Export()
-        {
-            return View();
-        }
+       
 
-        [HttpPost]
-        public ActionResult Export_Save(string contentType, string base64, string fileName)
-        {
-            var fileContents = Convert.FromBase64String(base64);
-
-            return File(fileContents, contentType, fileName);
-        }
+      
 
 
-
-        public void DrawPdfTemplate(
-   PdfTemplate template,
-   PointF location
-)
-        { }
+      
          public ActionResult CreateDocument()
     //    public PdfTemplate CreateTemplate()
         {
@@ -280,6 +247,7 @@ namespace WebMap.Controllers
                 template.Graphics.DrawString("Hello World", font, brush, 5, 5);
                 //Draws the template into the page graphics of the document.
                 pdfPage.Graphics.DrawPdfTemplate(template, PointF.Empty);
+               
                 //Saves the document.
             //    pdfDocument.Save("Output.pdf");
                 //Close the document
@@ -391,7 +359,91 @@ namespace WebMap.Controllers
                 return View();
             }
         }
+        [HttpPost]
+        public ActionResult tableaureport()
+           // public ActionResult tableaureport(System.Web.HttpPostedFileBase helpSectionImages)
+        {
+            using (PdfDocument doc = new PdfDocument())
+            {
+                //Add a page
+                PdfPage page = doc.Pages.Add();
+
+                //Create a PdfGrid
+                PdfGrid pdfGrid = new PdfGrid();
+                               
+                //Create a DataTable
+                System.Data.DataTable dataTable = new System.Data.DataTable();
+                
+                //Add columns to the DataTable
+                dataTable.Columns.Add("Categories");
+                dataTable.Columns.Add("Pourcentages");
+
+                //Add rows to the DataTable
+                dataTable.Rows.Add(new object[] { Cathegory.Banking.ToString(), projectService.categoriebank().ToString()+"%" });
+                dataTable.Rows.Add(new object[] { Cathegory.Commercial.ToString(), projectService.categcountcommer().ToString() + "%" });
+                dataTable.Rows.Add(new object[] { Cathegory.Education.ToString(), projectService.categcounteduc().ToString() + "%" });
+                dataTable.Rows.Add(new object[] { Cathegory.Medical.ToString(), projectService.categcountmedic().ToString() + "%" });
+                dataTable.Rows.Add(new object[] { Cathegory.Statistic.ToString(), projectService.categcountsc().ToString() + "%" });
+                dataTable.Rows.Add(new object[] { Cathegory.Autre.ToString(), projectService.categcountautre().ToString() + "%" });
+                
+
+                //Assign data source
+                pdfGrid.DataSource = dataTable;
+
+                //Draw grid to the page of PDF document
+                pdfGrid.Draw(page, new PointF(10, 10));
+
+                PdfGraphics graphics = page.Graphics;
+                
+
+               // chartmodel = new ViewModel();
+               // chart1 = new SfChart() { Background = Brushes.White };
+               // chart1.PrimaryAxis = new NumericalAxis();
+               // chart1.SecondaryAxis = new NumericalAxis()
+               // {
+               //     EdgeLabelsDrawingMode = EdgeLabelsDrawingMode.Shift
+               //};
+               // ColumnSeries series = new ColumnSeries();
+               // series.ItemsSource = model.Collection;
+               // series.XBindingPath = "XValue";
+               // series.YBindingPath = "YValue";
+               // chart1.Series.Add(series);
+               // chart1.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+               // chart1.Arrange(new Rect(new Point(0, 0), chart1.DesiredSize));
+
+               // // Export to PDF
+               // System.IO.MemoryStream outStream = new System.IO.MemoryStream();
+               // chart1.Save(outStream, new BmpBitmapEncoder());
+               //PdfPage page2 = doc.Pages.Add();
+               //PdfBitmap img = new PdfBitmap(outStream);
+               // page2.Graphics.DrawImage(img, 0, 100, 400, 350);
+               //outStream.Close();
+                //Save the document
+                doc.Save("Output.pdf", HttpContext.ApplicationInstance.Response, HttpReadType.Save); 
+            }
+            return RedirectToAction("categparprojet");
+        }
+ 
+
+
     }
 
-   
+    public class ViewModel
+    {
+        IProjetService projectService = new ProjetService();
+
+        public List <DataPoint> Collection { get; set; }
+        public ViewModel()
+        {
+            Collection = new List<DataPoint> ();
+             
+               
+            Collection.Add(new DataPoint() { Label = Cathegory.Banking.ToString(), Y = projectService.categoriebank()});
+            Collection.Add(new DataPoint() { Label = Cathegory.Autre.ToString(), Y = projectService.categcountautre() });
+            Collection.Add(new DataPoint() { Label = Cathegory.Commercial.ToString(), Y = projectService.categcountcommer() });
+            Collection.Add(new DataPoint() { Label = Cathegory.Education.ToString(), Y = projectService.categcounteduc() });
+            Collection.Add(new DataPoint() { Label = Cathegory.Medical.ToString(), Y = projectService.categcountmedic() });
+            Collection.Add(new DataPoint() { Label = Cathegory.Statistic.ToString(), Y = projectService.categcountsc() });
+        }
+    }
 }

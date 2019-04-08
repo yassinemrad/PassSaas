@@ -168,6 +168,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StatapiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,6 +258,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DomainMap\DomainMap.csproj">
+      <Project>{f21a712e-6c31-48fa-bf46-95bda79b9287}</Project>
+      <Name>DomainMap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceMap\ServiceMap.csproj">
+      <Project>{b8833c69-225c-438f-9a95-6aa16c0dc3a0}</Project>
+      <Name>ServiceMap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServicePattern\ServicePattern.csproj">
+      <Project>{721ccf30-e6fb-4051-ae2f-40fa28e1f308}</Project>
+      <Name>ServicePattern</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

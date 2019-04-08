@@ -10,13 +10,13 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    @ViewBag.users
+   
    
     <script>
 window.onload = function () {
 
-    var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
+    var chart = new CanvasJS.Chart("hero-graph", {
+        animationEnabled: false,
         exportEnabled: true,
 	title: {
 		text: ""
@@ -27,65 +27,66 @@ window.onload = function () {
 	axisY: {
 		title: "numbre of user per month ",
 		includeZero: false
-	},
+        },
+    
 	data: [{
 		type: "line",
 		dataPoints: @Html.Raw(ViewBag.DataPoints)
 	}]
 });
-chart.render();
+    chart.render();
+    var canvas = $("#hero-graph .canvasjs-chart-canvas").get(0);
+            var dataURL = canvas.toDataURL();
+            var jsonData = @Html.Raw(ViewBag.DataPoints);
+            var cat = [];
+            var pourc = [];
+            var datap = [];
+            jsonData.forEach(item => cat.push(item.label));
+            jsonData.forEach(item => pourc.push(item.y));
+
+    for (var i = 0; i < cat.length; i++) {
+        var data = [];
+        data.push(cat[i]);
+        data.push(pourc[i]);
+        datap.push(data);
+    }
+                $("#btn_report1").click(function () {
+                    var pdf = new jsPDF();
+                    //    pdf.title = "Calculer nombre d utilisateur ar mois";
+                    pdf.text(10, 10, "Calcule nombre d utilisateur par mois");
+                    pdf.addImage(dataURL, 'JPEG', -5, 20);
+                    pdf.autoTable({
+                        margin: { top: 100 },
+                        head: [['mois', 'Nombre d utilisateur']],
+                        body: datap
+                    });
+                    pdf.save("download4.pdf");
+                });
+            
 
         }
-        function printc() {
-            cchart = $("#chartContainer").ejChart("instance");
-            cchart.print("chartContainer");
-        }
+      
     </script>
 </head>
 <body>
 
 
     <div class="row mt">
-        <div class="col-lg-6">
+        <div style="width:130%">
             <div class="content-panel">
                 <h4><i class="fa fa-angle-right"></i> Chart Example 1</h4>
                 <div class="panel-body">
                     <div id="hero-graph" class="graph" style="height: 370px; width: 100%;"></div>
-                </div>
+                </div>     <input id="btn_report1" type="submit" value="report" style="width:150px;height:27px" />
+
+
 
             </div>
-
-
         </div>
     </div>
-    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-    <button type="button" class="activity-panel" id="c" onclick="print()"></button>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-    <div class="box wide">
-        <h4>Advanced Export options</h4>
-        <div class="box-col">
-            <button class='export-pdf k-button'>Export as PDF</button>
-        </div>
-        
-    </div>
-    <script>
-        $(".export-pdf").click(function () {
-            var chart = $("#chartContainer");
-            chart.exportPDF({ paperSize: "auto", margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" } }).done(function (data) {
-                kendo.saveAs({
-                dataURI: data,
-                fileName: "chart.pdf",
-                proxyURL: "@Url.Action("Export_Save", "Chart_Api")"
-            });
-        });
-    });
-
-
- 
-
- 
-    </script>
+    <script src="~/Scripts/jspdf.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable"></script>
 
 </body>
 </html>  
