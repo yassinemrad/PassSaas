@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Web.Http;
 
 namespace WebApiMap
@@ -19,8 +20,8 @@ namespace WebApiMap
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("application/json"));
+            config.Formatters.JsonFormatter.SupportedMediaTypes
+    .Add(new MediaTypeHeaderValue("text/html"));
         }
     }
 }

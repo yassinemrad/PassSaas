@@ -1,17 +1,14 @@
 ﻿@using WebMap.Models
 @model LoginViewModel
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="Dashboard">
 <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <title>Dashio - Bootstrap Admin Template</title>
-
 <!-- Favicons -->
 <link href="~/Content/MyTemplate/img/favicon.png" rel="icon">
 <link href="~/Content/MyTemplate/img/apple-touch-icon.png" rel="apple-touch-icon">
-
 <!-- Bootstrap core CSS -->
 <link href="~/Content/MyTemplate/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--external css-->
@@ -29,8 +26,7 @@
         <div class="account-page">
             <div class="container">
 
-
-                <div id="login-page">
+                <div >
                     <div class="container">
                         <form class="form-login" action="index.html">
                             <h2 class="form-login-heading">sign in now</h2>
@@ -96,11 +92,9 @@
                 <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
                 <script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
                 <script>
-                    $.backstretch("img/login-bg.jpg", {
+    $.backstretch("/Content/Template/img/login-bg.jpg", {
                         speed: 500
-                    });
-                </script><div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 763px; width: 982px; z-index: -999999; position: fixed;"><img src="img/login-bg.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1144.28px; height: 763px; max-width: none; z-index: -999999; left: -81.1383px; top: 0px;"></div>
-
+                    });</script><div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 763px; width: 982px; z-index: -999999; position: fixed;"><img src="img/login-bg.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1144.28px; height: 763px; max-width: none; z-index: -999999; left: -81.1383px; top: 0px;"></div>
             </div>
         </div>
     </div>
@@ -111,8 +105,6 @@
         @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
     </section>
 </div>
-
-
 
 
 @section Scripts {

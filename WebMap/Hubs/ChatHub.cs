@@ -22,7 +22,8 @@ public class ChatHub :Hub
 
         //  string idd;
         //   string id = System.Web.HttpContext.Current.User.Identity.GetUserId();
-        string idu = ConnClass.iu.ToString();
+          string idu = ConnClass.iu.ToString();
+       
         static List<Users> ConnectedUsers = new List<Users>();
         static List<Messages> CurrentMessage = new List<Messages>();
         ConnClass ConnC = new ConnClass();
@@ -32,7 +33,7 @@ public class ChatHub :Hub
             //   Session["idU"] = User.Identity.GetUserId();
             //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             var id = idu;
-
+           
             //   var userrrr = System.Web.HttpContext.Current.User.Identity.GetUserName();
             if (ConnectedUsers.Count(x => x.ConnectionId == id) == 0)
             {
@@ -82,8 +83,8 @@ public class ChatHub :Hub
             string RetimgName = "/images/dummy.png";
             try
             {
-                string query = "select image from Users where UserName='" + username + "'";
-                string ImageName = ConnC.GetColumnVal(query, "image");
+                string query = "select Image from Users where FirstName='" + username + "'";
+                string ImageName = ConnC.GetColumnVal(query, "Image");
 
                 if (ImageName != "")
                     RetimgName = "/images/DP/" + ImageName;
