@@ -48,7 +48,7 @@ namespace WebMap.Controllers
                     rv.id = i.id;
                     rv.description = i.description;
                     rv.objet = i.objet;
-                    rv.username =a.LastName;
+                    rv.username =a.FirstName;
                     rv.mail = a.UserName;
                     rv.date = i.date;
                     l.Add(rv);
@@ -65,12 +65,13 @@ namespace WebMap.Controllers
             List<reclamationViewModel> l = new List<reclamationViewModel>();
             foreach (var i in r)
             {
+                var a = us.GetById(i.user);
                 reclamationViewModel rv = new reclamationViewModel();
                 rv.user = i.user;
                 rv.id = i.id;
                 rv.description = i.description;
                 rv.objet = i.objet;
-               
+                rv.username = a.FirstName;
                 rv.date = i.date;
                 l.Add(rv);
 

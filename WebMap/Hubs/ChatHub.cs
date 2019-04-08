@@ -23,7 +23,7 @@ namespace WebMap.Hubs
 
         //  string idd;
         //   string id = System.Web.HttpContext.Current.User.Identity.GetUserId();
-        string idu = ConnClass.iu.ToString();
+      public  string idu = ConnClass.iu.ToString();
 
         static List<Users> ConnectedUsers = new List<Users>();
         static List<Messages> CurrentMessage = new List<Messages>();
@@ -33,6 +33,7 @@ namespace WebMap.Hubs
         {
             //   Session["idU"] = User.Identity.GetUserId();
             //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
             var id = user2.ToString();
 
             //   var userrrr = System.Web.HttpContext.Current.User.Identity.GetUserName();
