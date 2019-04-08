@@ -11,29 +11,30 @@ using System.Web;
 using Microsoft.AspNet.Identity.Owin;
 
 using System.Data;
+using System.Diagnostics;
 
 namespace WebMap.Hubs
 {
-    
 
 
-public class ChatHub :Hub
+
+    public class ChatHub : Hub
     {
 
         //  string idd;
         //   string id = System.Web.HttpContext.Current.User.Identity.GetUserId();
-          string idu = ConnClass.iu.ToString();
-       
+        string idu = ConnClass.iu.ToString();
+
         static List<Users> ConnectedUsers = new List<Users>();
         static List<Messages> CurrentMessage = new List<Messages>();
         ConnClass ConnC = new ConnClass();
-   
-        public void Connect(string userName)
+
+        public void Connect(string userName,int user2)
         {
             //   Session["idU"] = User.Identity.GetUserId();
             //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            var id = idu;
-           
+            var id = user2.ToString();
+
             //   var userrrr = System.Web.HttpContext.Current.User.Identity.GetUserName();
             if (ConnectedUsers.Count(x => x.ConnectionId == id) == 0)
             {
@@ -50,8 +51,8 @@ public class ChatHub :Hub
 
         public void SendMessageToAll(string userName, string message, string time)
         {
-           
-           // Session["idU"] = System.Web.HttpContext.Current.User.Identity.GetUserName();
+
+            // Session["idU"] = System.Web.HttpContext.Current.User.Identity.GetUserName();
             string UserImg = GetUserImage(userName);
             // store last 100 messages in cache
             AddMessageinCache(userName, message, time, UserImg);
@@ -67,7 +68,7 @@ public class ChatHub :Hub
 
             if (CurrentMessage.Count > 100)
                 CurrentMessage.RemoveAt(0);
-         //   string Query = "insert into message(UserName,Destination,Message,Time)Values('" + userName + "','all','" + message + "','chyhemek f zeby')";
+            //   string Query = "insert into message(UserName,Destination,Message,Time)Values('" + userName + "','all','" + message + "','chyhemek f zeby')";
             //ConnC.ExecuteQuery(Query);
 
         }
@@ -96,24 +97,25 @@ public class ChatHub :Hub
 
         public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         {
-         
+
             var item = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == idu);
             if (item != null)
             {
                 ConnectedUsers.Remove(item);
 
-             //   var id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                //   var id = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 Clients.All.onUserDisconnected(idu, item.UserName);
 
             }
             return base.OnDisconnected(stopCalled);
         }
 
-        public void SendPrivateMessage(string toUserId, string message)
+        public void SendPrivateMessage(string toUserId, string message,int user2)
         {
-
+            Debug.WriteLine("aaaa" + user2);
+            Debug.WriteLine("bbb" + toUserId);
             //  string fromUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            string fromUserId = idu;
+            string fromUserId = user2.ToString();
 
             var toUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == toUserId);
             var fromUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == fromUserId);
@@ -127,8 +129,7 @@ public class ChatHub :Hub
 
                 // send to caller user
                 Clients.Caller.sendPrivateMessage(toUserId, fromUser.UserName, message, UserImg, CurrentDateTime);
-               // string Query = "insert into message(UserName,Destination,Message,Time)Values('" + fromUserId + "','"+toUserId+"','" + message + "','chyhemek f zeby')";
-                //ConnC.ExecuteQuery(Query);
+             
             }
 
         }

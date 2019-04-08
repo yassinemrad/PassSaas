@@ -29,6 +29,7 @@ namespace WebMap.Controllers
             ConnClass.iu = Int32.Parse(User.Identity.GetUserId());
             ViewBag.userr = User.Identity.GetUserId();
           ViewBag.user = u.FirstName.ToString();
+            ViewBag.user2= Int32.Parse(User.Identity.GetUserId());
             System.Web.HttpContext.Current.Session["us"] = Int32.Parse(User.Identity.GetUserId());
             
             return View();

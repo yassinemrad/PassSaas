@@ -6,15 +6,15 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+<link rel="shortcut icon" type="image/x-icon" href="~/Content/Template/img/favicon.png">
 <title>Register - HRMS admin template</title>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/MyTemplate/")css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/MyTemplate/")css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/MyTemplate/")css/style.css">
+<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/style.css">
 
 <script src="@Url.Content("~/Content/MyTemplate/")js/html5shiv.min.js"></script>
-<script src="@Url.Content("~/Content/MyTemplate/")js/respond.min.js"></script>
+<script src="~/Scripts/respond.min.js"></script>
 
 
 <div class="main-wrapper">
@@ -24,7 +24,7 @@
             <div class="account-box">
                 <div class="account-wrapper">
                     <div class="account-logo">
-                        <a href="index.html"><img src="@Url.Content("~/Content/MyTemplate/")img/logo2.png" alt="Focus Technologies"></a>
+                        <a href="index.html"><img src="~/Content/Template/img/logo2.png" alt="Focus Technologies"></a>
                     </div>
                     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" , enctype ="multipart/form-data"}))
                     {
@@ -91,9 +91,9 @@
 </div>           
                         
                 <div class="sidebar-overlay" data-reff="#sidebar"></div>
-                <script type="text/javascript" src="@Url.Content("~/Content/MyTemplate/")js/jquery-3.2.1.min.js"></script>
-                <script type="text/javascript" src="@Url.Content("~/Content/MyTemplate/")js/bootstrap.min.js"></script>
-                <script type="text/javascript" src="@Url.Content("~/Content/MyTemplate/")js/app.js"></script>
+                <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
+                <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+                <script type="text/javascript" src="~/Scripts/app.js"></script>
                    
                     @section Scripts {
                         @Scripts.Render("~/bundles/jqueryval")

@@ -38,6 +38,8 @@
                     // Declare a proxy to reference the hub.
 
                     var chatHub = $.connection.chatHub;
+                    chatHub.logging = true;
+
                     registerClientMethods(chatHub);
                     // Start Hub
                     $.connection.hub.start().done(function () {
@@ -88,7 +90,7 @@
                  //   var name = '<%= this.UserName %>';
                     var name ='@(ViewBag.user)';
                     if (name.length > 0) {
-                        chatHub.server.connect(name);
+                        chatHub.server.connect(name,@ViewBag.user2);
 
                     }
 
@@ -233,9 +235,10 @@
                         $('#' + ctrId).find('#divMessage').append(divChatP);
 
                        var htt = $('#' + ctrId).find('#divMessage')[0].scrollHeight;
-                        $('#' + ctrId).find('#divMessage').slimScroll({
-                            height: htt
-                        });
+                        $('#' + ctrId).find('#divMessage');
+                            //.slimScroll({
+                            //height: htt
+                        //});
                     }
 
                 }
@@ -352,7 +355,8 @@
 
                 // Creation and Opening Private Chat Div
                 function OpenPrivateChatBox(chatHub, userId, ctrId, userName) {
-
+                    
+                   // Console.log(ctrId);
                     var PWClass = $('#PWCount').val();
 
                     if ($('#PWCount').val() == 'info')
@@ -411,7 +415,7 @@
 
                         var msg = $textBox.val();
                         if (msg.length > 0) {
-                            chatHub.server.sendPrivateMessage(userId, msg);
+                            chatHub.server.sendPrivateMessage(userId, msg,@ViewBag.user2);
                             $textBox.val('');
                         }
                     });

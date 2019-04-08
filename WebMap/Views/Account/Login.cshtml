@@ -1,5 +1,9 @@
 ﻿@using WebMap.Models
 @model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    //   Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
+}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -16,96 +20,89 @@
 <!-- Custom styles for this template -->
 <link href="~/Content/MyTemplate/css/style.css" rel="stylesheet">
 <link href="~/Content/MyTemplate/css/style-responsive.css" rel="stylesheet">
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-login-heading", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-    <div class="main-wrapper">
-        <div class="account-page">
-            <div class="container">
+<div id="login-page">
+    <div class="container">
 
-                <div >
-                    <div class="container">
-                        <form class="form-login" action="index.html">
-                            <h2 class="form-login-heading">sign in now</h2>
-                            <div class="login-wrap">
-                                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                </div>
-                                <br>
-                                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                </div>
-                                <label class="checkbox">
-                                    <input type="checkbox" value="remember-me"> Remember me
-                                    <span class="pull-right">
-                                        <a data-toggle="modal" href="~/Content/MyTemplate/login.html#myModal"> Forgot Password?</a>
-                                    </span>
-                                </label>
-                                <button class="btn btn-theme btn-block" href="~/Content/MyTemplate/index.html" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
-                                <hr>
-                                <div class="login-social-link centered">
-                                    <p>or you can sign in via your social network</p>
-                                    <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
-                                    <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
-                                </div>
-                                <div class="registration">
-                                    Don't have an account yet?<br>
-                                    <a class="" href="#">
-                                        Create an account
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Modal -->
-                            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title">Forgot Password ?</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Enter your e-mail address below to reset your password.</p>
-                                            <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                                            <button class="btn btn-theme" type="button">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- modal -->
-                        </form>
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-login", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+            <h2 class="form-login-heading">sign in now</h2>
+
+            <div class="login-wrap">
+                @Html.LabelFor(m=>m.Email, new { @class = "col-md-2 control-label", @placeholder = "User ID" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+                <br>
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" , @placeholder = "Password" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+                <label class="checkbox">
+                    <input type="checkbox" value="remember-me"> Remember me
+                    <span class="pull-right">
+                        <a data-toggle="modal" href="~/Content/MyTemplate/login.html#myModal"> Forgot Password?</a>
+                    </span>
+                </label>
+                <button class="btn btn-theme btn-block" href="~/Content/MyTemplate/index.html" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
+                <hr>
+                <div class="login-social-link centered">
+                    <p>or you can sign in via your social network</p>
+                    <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
+                    <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
+                </div>
+                <div class="registration">
+                    Don't have an account yet?<br>
+                    @Html.ActionLink(linkText: "Create an account", actionName: "Register", controllerName: "Account", routeValues: null, htmlAttributes:null)
+
+                </div>
+            </div>
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Forgot Password ?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Enter your e-mail address below to reset your password.</p>
+                            <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                            <button class="btn btn-theme" type="button">Submit</button>
+                        </div>
                     </div>
                 </div>
-                <!-- js placed at the end of the document so the pages load faster -->
-                <script src="lib/jquery/jquery.min.js"></script>
-                <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-                <!--BACKSTRETCH-->
-                <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-                <script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
-                <script>
-    $.backstretch("/Content/Template/img/login-bg.jpg", {
-                        speed: 500
-                    });</script><div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 763px; width: 982px; z-index: -999999; position: fixed;"><img src="img/login-bg.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1144.28px; height: 763px; max-width: none; z-index: -999999; left: -81.1383px; top: 0px;"></div>
             </div>
+            <!-- modal -->
+            <!-- js placed at the end of the document so the pages load faster -->
+            <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+            <script src="~/Scripts/bootstrap.min.js"></script>
+            <!--BACKSTRETCH-->
+            <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+            <script type="text/javascript" src="~/Scripts/jquery.backstretch.min.js"></script>
+            <script>
+                $.backstretch("../Content/Template/img/login-bg.jpg", {
+                    speed: 500
+                });</script><div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 763px; width: 982px; z-index: -999999; position: fixed;"><img src="img/login-bg.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1144.28px; height: 763px; max-width: none; z-index: -999999; left: -81.1383px; top: 0px;"></div>
+    
+                }
+         
         </div>
-    </div>
-
-}
+</div>
 <div class="col-md-4">
     <section id="socialLoginForm">
         @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
     </section>
 </div>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
