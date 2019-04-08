@@ -13,6 +13,10 @@ namespace WebMap.Models
             this.Y = y;
         }
 
+        public DataPoint()
+        {
+        }
+
         //Explicitly setting the name to be used while serializing to JSON.
         [DataMember(Name = "label")]
         public string Label = "";
