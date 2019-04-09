@@ -80,6 +80,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\Forum.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Module.cs" />
     <Compile Include="Entities\Notification.cs" />
