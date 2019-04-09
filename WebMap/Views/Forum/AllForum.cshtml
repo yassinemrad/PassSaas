@@ -1,0 +1,107 @@
+﻿
+@model IEnumerable<WebMap.Models.ForumModels>
+
+
+@{
+    Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
+}
+@using (Html.BeginForm("ProjectInGivenTime", "Projet", FormMethod.Post))
+
+{ }
+
+
+@using (Html.BeginForm())
+{
+}
+<html>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                <div class="grid">
+                    <h1 class="grid--cell fa-fs-headline1">
+                        Explore Our Questions
+                    </h1>
+            </th>
+            <th>
+                <div class="pl8 aside-cta grid--cell" role="navigation" aria-label="ask new question">
+                    <a href="/forum/create" class="d-inline-flex ai-center ws-nowrap s-btn s-btn__primary">
+                        Ask Question
+                    </a>
+                </div>
+
+                </div>
+            </th>
+        </tr>
+    </table>
+    @foreach (var item in Model)
+    {
+        <table>
+            <tr>
+                <table>
+                    <tr>
+
+                        <div id="qlist-wrapper" class="flush-left">
+                            <div id="question-mini-list">
+                                <div>
+                                    <div class="question-summary narrow _gps" id="question-summary-217001">
+                                        <div onclick="window.location.href='/questions/217001/how-to-avoid-nesting-promises'" class="cp">
+                                            <th>
+                                                <div class="votes">
+                                                    <div class="mini-counts"><span title="0 votes">0</span></div>
+                                                    <div>votes</div>
+                                                </div>
+                                            <th>
+                                                <div class="views">
+                                                    <div class="mini-counts"><span title="5 views">5</span></div>
+                                                    <div>views</div>
+                                                </div>
+                                            </th>
+                                        </div>
+                    </tr>
+                </table>
+
+
+
+                <div class="summary">
+
+
+                    <h3>
+                        <a href="/forum/details/{id}" class="Forum-hyperlink">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </a>
+                    </h3>
+                    <div class="tags t-nodeûjs t-promise">
+
+
+                        <a href="/questions/tagged/node.js" class="post-tag" title="" rel="tag"></a> <a href="/questions/tagged/promise" class="post-tag" title="" rel="tag"> @Html.DisplayFor(modelItem => item.Categorie)</a>
+                    </div>
+                    <div class="started">
+                        <a href="/questions/217001/how-to-avoid-nesting-promises/?lastactivity" class="started-link">
+                            <span class="relativetime">
+                                Created on : @Html.DisplayFor(modelItem => item.Date)
+                                by @Html.DisplayFor(modelItem => item.Author)
+                            </span>
+                        </a>
+                        @*<a href="/users/93119/tomg"></a> <span class="reputation-score" title="reputation score " dir="ltr"> by @Html.DisplayFor(modelItem => item.Author)</span>*@
+                    </div>
+                </div>
+
+                <hr />
+
+
+
+            </tr>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </table>
+      
+    }
+</body>
+
+
+</html>

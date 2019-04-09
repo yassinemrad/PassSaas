@@ -28,7 +28,7 @@ namespace WebMap.Controllers
         {
 
             User u = us.GetById(Int32.Parse(User.Identity.GetUserId()));
-            if (u.Role.Equals("TeamMember") )
+            if (u.Role.Equals("TeamMember") || u.Role.Equals("TeamLeader"))
             {
                 return RedirectToAction("MyReclamation");
             }
@@ -98,25 +98,20 @@ namespace WebMap.Controllers
         [HttpPost]
         public ActionResult Create(int id, reclamationViewModel rec)
         {
-            User u = us.GetById(id);
-           
-              
-            
-         
+            if (ModelState.IsValid)
+            {
                 reclamation r = new reclamation();
                 r.etat = 1;
                 r.objet = rec.objet;
                 r.description = rec.description;
                 r.date = DateTime.Now.ToString("dd-MM-yyyy");
-            r.user = id;
-                //uu.FirstName = u.FirstName;
-                //uu.Id = u.Id;
-                // r.user = new User();
+                r.user = id;
                 rs.Add(r);
                 rs.Commit();
 
-                return RedirectToAction("MyReclamation");
-            
+               
+            }
+            return RedirectToAction("MyReclamation");
         }
 
         // GET: Reclamation/Edit/5
@@ -126,8 +121,6 @@ namespace WebMap.Controllers
             if (r.etat.Equals(0))
             {
                 TempData["erreur"] = "oui";
-
-                //   ViewBag.erreur ="oui";
                 return RedirectToAction("MyReclamation");
             }
             else
