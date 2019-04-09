@@ -4,6 +4,7 @@
     ViewBag.Title = "durationtask";
     Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
 }
+<h2>Number of user task</h2>
 
 <!DOCTYPE HTML>
 <html>
@@ -16,7 +17,7 @@ window.onload = function () {
         animationEnabled: true,
         exportEnabled: true,
 	title: {
-		text: "Seconde Chart"
+		text: "Count of user task"
         },
 
 	subtitles: [{
@@ -63,19 +64,20 @@ window.onload = function () {
 </head>
 <body>
 
-    <div id="chart2" height="100" width="100"></div>
-   
-        <div style="width:135%">
+    
+    <div class="row mt">
+        <div style="width:98%;margin-top: 130px;
+    margin-left: 20px;">
             <div class="content-panel">
                 <h4><i class="fa fa-angle-right"></i> Bar</h4>
                 <div class="panel-body text-center">
                     <div id="bar" style="height: 370px; width: 100%;"></div>
                 </div>
             </div>
-            
+
 
         </div>
-
+        </div>
 
 
 
@@ -83,6 +85,7 @@ window.onload = function () {
 
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+       
 
 </body>
 </html>    

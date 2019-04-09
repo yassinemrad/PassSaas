@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
 }
 
-<h2>usercountperyear</h2>
+<h2>User Count Per Year</h2>
 
 <!DOCTYPE HTML>
 <html>
@@ -19,7 +19,7 @@ window.onload = function () {
         animationEnabled: false,
         exportEnabled: true,
 	title: {
-		text: ""
+		text: "Count User Per Year"
 	},
 	axisX: {
 
@@ -72,9 +72,10 @@ window.onload = function () {
 
 
     <div class="row mt">
-        <div style="width:125%">
+        <div style="width:98%;margin-top: 130px;
+    margin-left: 20px; box-shadow: 6px 6px 6px black;">
             <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> Chart Example 1</h4>
+               
                 <div class="panel-body">
                     <div id="hero-graph" class="graph" style="height: 370px; width: 100%;"></div>
                 </div>     <input id="btn_report1" type="submit" value="report" style="width:150px;height:27px" />
@@ -87,6 +88,7 @@ window.onload = function () {
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="~/Scripts/jspdf.min.js"></script>
     <script src="https://unpkg.com/jspdf-autotable"></script>
+  
 
 </body>
 </html>  
