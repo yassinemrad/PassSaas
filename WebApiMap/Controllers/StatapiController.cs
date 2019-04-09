@@ -64,13 +64,13 @@ namespace WebApiMap.Controllers
         }
         //erruerrrrrrr
        // /api/Statapi/listta?etat=Doing&id=1
-        [Route("api/Statapi/listta")]
-        [HttpGet]
-        public int listta (Etat etat,int id)
-        {
-           return ts.listtacs(etat,id);
+       // [Route("api/Statapi/listta")]
+       // [HttpGet]
+       // public int listta (Etat etat,int id)
+       // {
+         //  return ts.listtacs(etat,id);
 
-        }
+       // }
 
         [Route("api/Statapi/dateuser")]
         [HttpGet]

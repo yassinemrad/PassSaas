@@ -7,8 +7,7 @@
     Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
 }
 
-<h2>progressproject</h2>
-<
+<h2>progress project</h2>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,10 +20,10 @@
                 exportEnabled: true,
                 animationEnabled: false,
                 title: {
-                    text: "Indian Smartphone Market Share"
+                    text: "Progress of each project"
                 },
                 subtitles: [{
-                    text: "Q2, 2016"
+                    text: ""
                 }],
                 data: [{
                     type: "doughnut",
@@ -73,9 +72,10 @@
 <body>
 
 
-    <div style="width:135%">
+    <div style="width:100%;margin-top: 130px;
+    margin-left: -5px; box-shadow: 6px 6px 6px black;">
         <div class="content-panel">
-            <h4><i class="fa fa-angle-right"></i> Progress Project</h4>
+           
             <div class="panel-body">
 
                 <div id="hero-donut" class="graph" style="height: 370px; width: 100%;"></div>
@@ -103,8 +103,10 @@
     </div>
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-   
+
     <script src="~/Scripts/jspdf.min.js"></script>
+    
+
     <script src="https://unpkg.com/jspdf-autotable"></script>
 </body>
 </html> 

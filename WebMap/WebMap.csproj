@@ -501,6 +501,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\donut-chart %281%29.svg" />
+    <Content Include="images\donut-chart.svg" />
     <Content Include="images\DP\aano_avatar.png" />
     <Content Include="images\DP\adminKoala.jpg" />
     <Content Include="images\DP\AkshayHydrangeas.jpg" />
@@ -642,6 +644,7 @@
     <Content Include="Views\Tasks\Details.cshtml" />
     <Content Include="Views\Module\Create.cshtml" />
     <Content Include="Views\Module\Index.cshtml" />
+    <Content Include="Views\Stat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
