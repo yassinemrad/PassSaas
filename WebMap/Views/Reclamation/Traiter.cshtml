@@ -4,46 +4,52 @@
     Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
 }
 
-<h2>Traiter</h2>
+<h2><i class="fa fa-angle-right"></i>     Treat Reclamations</h2>
+<hr >
 
 
-<p>
-    @Html.ActionLink("List Reclamation Non Traiter", "Index")
-</p>
 
-<table class="table">
+<table class="table table-striped table-advance table-hover" align="center">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.objet)
+            <i class="fa fa-bookmark"></i>
+            @Html.DisplayName("Object")
+        </th>
+        <th class="hidden-phone">
+            <i class="fa fa-question-circle"></i>
+            @Html.DisplayName("Description")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.description)
+            <i class="fa fa-calendar" />
+            @Html.DisplayName("Date")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user)
+            <i class="fa fa-bullhorn"></i>
+            @Html.DisplayName("UserName")
         </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.objet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.username)
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.objet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.username)
+            </td>
+        </tr>
     }
-
 </table>
+<button type="button" class="btn btn-theme"
+        onclick="
+    location.href= '@Url.Action("Index", "Reclamation")'
+    ">
+    <i class="fa fa-check"></i>News
+</button>

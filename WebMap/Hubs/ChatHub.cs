@@ -20,40 +20,33 @@ namespace WebMap.Hubs
 
     public class ChatHub : Hub
     {
-
-        //  string idd;
-        //   string id = System.Web.HttpContext.Current.User.Identity.GetUserId();
-      public  string idu = ConnClass.iu.ToString();
+     
 
         static List<Users> ConnectedUsers = new List<Users>();
         static List<Messages> CurrentMessage = new List<Messages>();
         ConnClass ConnC = new ConnClass();
-
+        Random rnd = new Random();
+      public static string usern { get; set; } 
         public void Connect(string userName,int user2)
         {
-            //   Session["idU"] = User.Identity.GetUserId();
-            //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-
-            var id = user2.ToString();
-
-            //   var userrrr = System.Web.HttpContext.Current.User.Identity.GetUserName();
-            if (ConnectedUsers.Count(x => x.ConnectionId == id) == 0)
+            usern  = Context.ConnectionId;
+            if (ConnectedUsers.Count(x => x.UserName.Equals(userName)).Equals(0)) 
             {
                 string UserImg = GetUserImage(userName);
                 string logintime = DateTime.Now.ToString();
-                ConnectedUsers.Add(new Users { ConnectionId = id, UserName = userName, UserImage = UserImg, LoginTime = logintime });
+                ConnectedUsers.Add(new Users { ConnectionId = usern, UserName = userName, UserImage = UserImg, LoginTime = logintime });
                 // send to caller
-                Clients.Caller.onConnected(id, userName, ConnectedUsers, CurrentMessage);
+                Clients.Caller.onConnected(usern, userName, ConnectedUsers, CurrentMessage);
 
                 // send to all except caller client
-                Clients.AllExcept(id).onNewUserConnected(id, userName, UserImg, logintime);
+                Clients.AllExcept(usern).onNewUserConnected(usern, userName, UserImg, logintime);
             }
         }
 
+        
+
         public void SendMessageToAll(string userName, string message, string time)
         {
-
-            // Session["idU"] = System.Web.HttpContext.Current.User.Identity.GetUserName();
             string UserImg = GetUserImage(userName);
             // store last 100 messages in cache
             AddMessageinCache(userName, message, time, UserImg);
@@ -69,9 +62,7 @@ namespace WebMap.Hubs
 
             if (CurrentMessage.Count > 100)
                 CurrentMessage.RemoveAt(0);
-            //   string Query = "insert into message(UserName,Destination,Message,Time)Values('" + userName + "','all','" + message + "','chyhemek f zeby')";
-            //ConnC.ExecuteQuery(Query);
-
+           
         }
 
         // Clear Chat History
@@ -99,28 +90,25 @@ namespace WebMap.Hubs
         public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         {
 
-            var item = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == idu);
+            var item = ConnectedUsers.FirstOrDefault(x => x.ConnectionId.Equals(usern));
             if (item != null)
             {
                 ConnectedUsers.Remove(item);
 
-                //   var id = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                Clients.All.onUserDisconnected(idu, item.UserName);
+                   var id =usern;
+                Clients.All.onUserDisconnected(usern, item.UserName);
 
             }
             return base.OnDisconnected(stopCalled);
         }
 
-        public void SendPrivateMessage(string toUserId, string message,int user2)
+        public void SendPrivateMessage(string toUserId, string message,string user)
         {
-            Debug.WriteLine("aaaa" + user2);
-            Debug.WriteLine("bbb" + toUserId);
-            //  string fromUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            string fromUserId = user2.ToString();
-
-            var toUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == toUserId);
-            var fromUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == fromUserId);
-
+            var toUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId.Equals(toUserId));
+            Debug.WriteLine("to user" + toUser.ConnectionId);
+            var fromUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId .Equals(usern));
+            string fromUserId = fromUser.ConnectionId;
+            Debug.WriteLine("from user" + fromUser.ConnectionId);
             if (toUser != null && fromUser != null)
             {
                 string CurrentDateTime = DateTime.Now.ToString();

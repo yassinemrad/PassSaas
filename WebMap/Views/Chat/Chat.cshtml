@@ -43,7 +43,7 @@
                     registerClientMethods(chatHub);
                     // Start Hub
                     $.connection.hub.start().done(function () {
-
+                        console.log("connected");
                         registerEvents(chatHub)
 
                     });
@@ -202,6 +202,8 @@
 
                             OpenPrivateChatBox(chatHub, windowId, ctrId, fromUserName, userimg);
 
+                        } else {
+                            console.log("ereeeuuuuur open private chat");
                         }
 
                         var CurrUser = $('#hdUserName').val();
@@ -415,7 +417,7 @@
 
                         var msg = $textBox.val();
                         if (msg.length > 0) {
-                            chatHub.server.sendPrivateMessage(userId, msg,@ViewBag.user2);
+                            chatHub.server.sendPrivateMessage(userId, msg,'@ViewBag.user');
                             $textBox.val('');
                         }
                     });
