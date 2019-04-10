@@ -513,8 +513,11 @@
     <Content Include="images\DP\AltafAjpg.jpg" />
     <Content Include="images\DP\AltafHBD-All-Uttari01.jpg" />
     <Content Include="images\DP\dummy.png" />
+    <Content Include="images\DP\identite.jpg" />
+    <Content Include="images\DP\identitè.jpg" />
     <Content Include="images\DP\slimenno_avatar.png" />
     <Content Include="images\dummy.png" />
+    <Content Include="images\pmt.jpg" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
     <Content Include="Rotativa\wkhtmltoimage.exe" />
@@ -649,7 +652,6 @@
     <Content Include="Views\Tasks\Details.cshtml" />
     <Content Include="Views\Module\Create.cshtml" />
     <Content Include="Views\Module\Index.cshtml" />
-    <Content Include="Views\Stat\Index.cshtml" />
     <Content Include="Views\Forum\AllForum.cshtml" />
     <Content Include="Views\Forum\cc.cshtml" />
     <Content Include="Views\Forum\Create.cshtml" />

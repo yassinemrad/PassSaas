@@ -160,7 +160,7 @@ namespace WebMap.Controllers
 
                     var user = new TeamLeader { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password ,Role=model.Role,image=Image.FileName};
                     var result = await UserManager.CreateAsync(user, model.Password);
-                    Image.SaveAs(Path.Combine(Server.MapPath("/images/DP/"),Image.FileName));
+                   Image.SaveAs(Path.Combine(Server.MapPath("~/images/DP/"),Image.FileName));
                     if (result.Succeeded)
                     {
                         //  await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -186,7 +186,7 @@ namespace WebMap.Controllers
                 {
                     var user = new TeamMember { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password, Role = model.Role, image = Image.FileName };
                     var result = await UserManager.CreateAsync(user, model.Password);
-                    Image.SaveAs(Path.Combine(Server.MapPath("/images/DP/"), Image.FileName));
+                    Image.SaveAs(Path.Combine(Server.MapPath("~/images/DP/"), Image.FileName));
 
                     if (result.Succeeded)
                     {
