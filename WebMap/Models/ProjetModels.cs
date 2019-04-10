@@ -21,6 +21,11 @@ namespace WebMap.Models
         public DateTime endDate { get; set; }
         public String description { get; set; }
         public Cathegory cathegory { get; set; }
+        public string Photo { get; set; }
+        //public int? ProjectId { get; set; }
+        public int Budget { get; set; }
+        public String ThemeColor { get; set; }
+        public Boolean IsFullDay { get; set; }
         public virtual ICollection<Module> modules { get; set; }
         public int idmodul { get; set; }
 
