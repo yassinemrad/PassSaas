@@ -944,6 +944,7 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Upload\" />
     <Folder Include="Views\Webapistat\" />
   </ItemGroup>
   <ItemGroup>
