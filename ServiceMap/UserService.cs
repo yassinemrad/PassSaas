@@ -45,6 +45,12 @@ namespace ServiceMap
             return x.Email;
             
         }
+        public User finUserByMail(string mail)
+        {
+        
+            var x = GetMany(u => u.Email.Equals(mail));
+            return x.FirstOrDefault();
+        }
 
     }
 }

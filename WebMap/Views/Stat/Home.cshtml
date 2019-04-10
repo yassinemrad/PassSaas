@@ -49,16 +49,16 @@ window.onload = function () {
         data.push(pourc[i]);
         datap.push(data);
     }
-                $("#btn_report").click(function () {
-                    var pdf = new jsPDF();
+                $("#btn_report1").click(function () {
+                    var pdf1 = new jsPDF();
 
-                    pdf.addImage(dataURL, 'JPEG', 0, 20);
-                    pdf.autoTable({
+                    pdf1.addImage(dataURL, 'JPEG', 10, 10,200,75);
+                    pdf1.autoTable({
                         margin: { top: 100 },
                         head: [['Etat', 'Nombre d etat']],
                         body: datap
                     });
-                    pdf.save("download3.pdf");
+                    pdf1.save("TaskState.pdf");
                 });
             
   
@@ -68,24 +68,25 @@ window.onload = function () {
     </script>
 </head>
 <body>
-    <div style="width:100%;margin-top: 150px;
+    <div class="row mt">
+        <div style="width:99%;margin-top: 5px;
     margin-left: 5px; box-shadow: 6px 6px 6px black;">
-        <div class="content-panel">
-           
-            <div class="panel-body">
-                <div class="panel-body">
-                    <div id="hero-bar" class="graph" style="height: 370px; width: 100%;"></div>
-                </div>                    <input id="btn_report" type="submit" value="report" style="width:150px;height:27px" />
+            <div class="content-panel">
+
+                <div class="panel-body text-center" style="height:470px">
+
+                    <div id="hero-bar" class="graph" style="height: 370px; width: 100%"></div>
+                </div>  <button id="btn_report1" type="button" class="btn btn-primary btn-lg btn-block">report</button>
 
 
-
+                
             </div>
         </div>
-    </div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script src="~/Scripts/jspdf.min.js"></script>
-    <script src="https://unpkg.com/jspdf-autotable"></script>
-   
+        </div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <script src="~/Scripts/jspdf.min.js"></script>
+        <script src="https://unpkg.com/jspdf-autotable"></script>
+
 
 </body>
 </html>    

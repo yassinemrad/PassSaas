@@ -40,7 +40,7 @@
                     toolTipContent: "<b>{label}</b>: {y}%",
                     showInLegend: "true",
                     legendText: "{label}",
-                    indexLabel: "{label} - {y}%",
+                    indexLabel: "{label}  {y}%",
                     dataPoints: @Html.Raw(ViewBag.DataPoints)
 
 
@@ -67,7 +67,8 @@
             }
     $("#btn_report").click(function () {
         var pdf = new jsPDF();
-        pdf.addImage(dataURL, 'JPEG', -30, 20);
+      
+        pdf.addImage(dataURL, 'JPEG', 10, 10, 200, 70);
         pdf.autoTable({
             margin: { top: 100 },
             head: [['Categories', 'Pourcentages']],
@@ -79,19 +80,20 @@
     </script>
 </head>
 <body>
-
-    <div class="row mt">
-        <div style="width:99%;margin-top: 150px;
+  
+    <div class="row mt" style="height:400px">
+        <div style="width:99%;margin-top: 10px;
     margin-left: 5px; box-shadow: 6px 6px 6px black;">
-            <div class="content-panel" style="height:400%">
-                
-                <div class="panel-body text-center">
-                    <div id="pie" name="image" style="height: 370px; width: 100%; "></div>
+            <div class="content-panel" style="height:100%">
+
+                <div class="panel-body text-center" style="height:500px">
+                    <div id="pie" name="image" style="height: 400px; width: 100%; "></div>
                 </div>
-                <input id="btn_report" type="submit" value="report" style="width:150px;height:27px" />
+                <button id="btn_report" type="button" class="btn btn-primary btn-lg btn-block">report</button>
+
             </div>
         </div>
-        </div>
+    </div>
 
 
 

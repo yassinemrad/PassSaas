@@ -53,10 +53,12 @@ window.onload = function () {
                 $("#btn_report1").click(function () {
                     var pdf = new jsPDF();
                     //    pdf.title = "Calculer nombre d utilisateur ar mois";
-                    pdf.text(10, 10, "Calcule nombre d utilisateur par mois");
-                    pdf.addImage(dataURL, 'JPEG', -5, 20);
+                    pdf.text(50, 10, "Calcule nombre d utilisateur par mois");
+                    
+                    pdf.addImage(dataURL, 'JPEG', 10, 10, 200, 70);
                     pdf.autoTable({
-                        margin: { top: 100 },
+                        margin: { top: 110 },
+
                         head: [['mois', 'Nombre d utilisateur']],
                         body: datap
                     });
@@ -72,13 +74,14 @@ window.onload = function () {
 
 
     <div class="row mt">
-        <div style="width:98%;margin-top: 130px;
-    margin-left: 20px; box-shadow: 6px 6px 6px black;">
+        <div style="width:99%;margin-top: 5px;
+    margin-left: 10px; box-shadow: 6px 6px 6px black;">
             <div class="content-panel">
-               
-                <div class="panel-body">
-                    <div id="hero-graph" class="graph" style="height: 370px; width: 100%;"></div>
-                </div>     <input id="btn_report1" type="submit" value="report" style="width:150px;height:27px" />
+
+                <div class="panel-body"  style="height:400px">
+                    <div id="hero-graph" class="graph"></div>
+                </div>  <button id="btn_report1" type="button" class="btn btn-primary btn-lg btn-block" style="width:100%; margin-top:90px">report</button>
+
 
 
 
