@@ -267,6 +267,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Controllers\ProjetApiController.cs" />
+    <Compile Include="Controllers\ProjetController.cs" />
     <Compile Include="Controllers\ReclamationController.cs" />
     <Compile Include="Controllers\StatController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
@@ -927,6 +929,17 @@
     <Content Include="Views\Forum\Edit.cshtml" />
     <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
+    <Content Include="Views\Projet\Create.cshtml" />
+    <Content Include="Views\Projet\Delete.cshtml" />
+    <Content Include="Views\Projet\DelivredProject.cshtml" />
+    <Content Include="Views\Projet\Details.cshtml" />
+    <Content Include="Views\Projet\Edit.cshtml" />
+    <Content Include="Views\Projet\Index.cshtml" />
+    <Content Include="Views\Projet\MostExpensiveProject.cshtml" />
+    <Content Include="Views\Projet\MyCalendar.cshtml" />
+    <Content Include="Views\Projet\NonDelivredProject.cshtml" />
+    <Content Include="Views\Projet\ProjectInGivenTime.cshtml" />
+    <Content Include="Views\Projet\_CalendarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

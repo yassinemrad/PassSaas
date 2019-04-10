@@ -17,5 +17,22 @@ namespace ServiceMap
         double categcounteduc();
         double categcountsc();
          double categcountautre();
+
+
+
+
+        float progressProject(int id);
+
+
+
+        IEnumerable<Projet> getProjectInDate(DateTime start, DateTime end);
+        IEnumerable<Projet> getDelivredProject();
+
+        IEnumerable<Projet> getNonDelivredProject();
+
+
+        IEnumerable<Projet> getMostExpensiveProject();
+
+        IEnumerable<ProjectBudget> Get6MostCostlyProjectsForATeamLeader(TeamLeader e);
     }
 }

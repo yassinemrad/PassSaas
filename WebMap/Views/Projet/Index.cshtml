@@ -1,0 +1,148 @@
+﻿@model IEnumerable<WebMap.Models.ProjetModels>
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+}
+@{
+    Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
+}
+@Html.ActionLink("Print Details", "PrintDetails")
+
+@*@using (Html.BeginForm("ProjectInGivenTime", "Projet", FormMethod.Post))
+    {<h3> Projects In Specific Period   </h3>
+        <p>
+            From @Html.TextBox("From", "From", new { type = "date" }) To
+            @Html.TextBox("To", "To", new { type = "date" })  <input type="submit" value="Confirm" />
+        </p>
+    }*@
+
+
+@using (Html.BeginForm())
+{
+
+    @*Un seul bouton pour les deux recherches*@
+    <table>
+        <tr>
+            <td>
+                <div>
+
+                    Search with Name of project: <input type="text" class="form-control" placeholder="Search" autofocus="" @Html.TextBox("searchString")>
+
+
+
+                </div>
+            </td>
+            <td>
+                <input type="submit" value="search" id="recherche" class="btn btn-theme btn-block" />
+            </td>
+            @*<button type="button" class="btn btn-round btn-warning">Warning</button>*@
+        </tr>
+
+    </table>
+}
+<div class="content-panel">
+    <table class="table table-striped table-advance table-hover">
+
+
+        <hr>
+        <thead>
+            <tr>
+                <th><i class="fa fa-bullhorn"></i> Name of Project</th>
+                <th><i class="fa fa-question-circle col-med2"></i> Description</th>
+
+                <th><i class="fa fa-bookmark"></i> Start Date </th>
+                <th><i class=" fa fa-edit"></i> End Date</th>
+                <th><i class="fa fa-question-circle"></i> category</th>
+                <th><i class="fa fa-dollar"></i> Budget</th>
+                <th><i class="fa fa-camera"></i> photo</th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                            <a>@Html.DisplayFor(modelItem => item.name) </a>
+                        </td>*@
+                    <td class="hidden-phone col-med2">@Html.DisplayFor(modelItem => item.name)</td>
+
+                    <td class="hidden-phone col-med2"> @Html.DisplayFor(modelItem => item.description)</td>
+                    <td><span class="label label-success label-mini">@Html.DisplayFor(modelItem => item.startDate)</span></td>
+                    <td><span class="label label-info label-mini">@Html.DisplayFor(modelItem => item.endDate)</span></td>
+                    <td class="hidden-phone"> @Html.DisplayFor(modelItem => item.cathegory)</td>
+                    <td class="hidden-phone col-med2"> @Html.DisplayFor(modelItem => item.Budget)</td>
+
+                    <td>
+                        @*recuperer l'image*@
+                        @{string path = "~/Content/Upload/" + @item.Photo;}
+                        @*enlever label for pour afficher seulement l'image*@
+                        <img src="@Url.Content(path)" width="50" height="50" />
+                    </td>
+
+                    <td>
+                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  @Html.ActionLink("Edit", "Edit", new { id = item.id }) |</button>
+                        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> @Html.ActionLink("Details", "Details", new { id = item.id }) |</button>
+                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i>  @Html.ActionLink("Delete", "Delete", new { id = item.id })</button>
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+    @*@Html.ActionLink("DelivredProject", "DelivredProject")<br />
+        @Html.ActionLink("DelivredProject", "DelivredProject")<br />
+        @Html.ActionLink("MostExpensiveProject", "MostExpensiveProject")*@
+
+</div>
+<!-- /content-panel -->
+@*<h2>Indexx</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.startDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.endDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th></th>
+        </tr>
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            </td>
+        </tr>
+    }
+
+    </table>*@
