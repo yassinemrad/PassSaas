@@ -160,7 +160,7 @@ namespace WebMap.Controllers
 
                     var user = new TeamLeader { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password ,Role=model.Role,image=Image.FileName};
                     var result = await UserManager.CreateAsync(user, model.Password);
-                    Image.SaveAs(Path.Combine(Server.MapPath("/images/DP/"),Image.FileName));
+                   Image.SaveAs(Path.Combine(Server.MapPath("~/images/DP/"),Image.FileName));
                     if (result.Succeeded)
                     {
                         //  await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -186,7 +186,7 @@ namespace WebMap.Controllers
                 {
                     var user = new TeamMember { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Password = model.Password, Role = model.Role, image = Image.FileName };
                     var result = await UserManager.CreateAsync(user, model.Password);
-                    Image.SaveAs(Path.Combine(Server.MapPath("/images/DP/"), Image.FileName));
+                    Image.SaveAs(Path.Combine(Server.MapPath("~/images/DP/"), Image.FileName));
 
                     if (result.Succeeded)
                     {
@@ -223,7 +223,7 @@ namespace WebMap.Controllers
     [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(int userId, string code)
         {
-            if (userId == null || code == null)
+            if (userId == 0 || code == null)
             {
                 return View("Error");
             }
@@ -357,7 +357,7 @@ namespace WebMap.Controllers
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
-            if (userId == null)
+            if (userId == 0)
             {
                 return View("Error");
             }

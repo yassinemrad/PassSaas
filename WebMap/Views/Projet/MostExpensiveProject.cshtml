@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebMap.Models.ProjetModels>
+
+@{
+    ViewBag.Title = "MostExpensiveProject";
+}
+@{
+    Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
+}
+<h2>Most Expensive Project</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Budget)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in @ViewBag.expproj)
+    {
+        <tr>
+
+            <td>
+                @item.name
+            </td>
+            <td>
+                @item.startDate
+            </td>
+            <td>
+                @item.endDate
+            </td>
+            <td>
+                @item.description
+            </td>
+
+            <td>
+                @item.cathegory
+            </td>
+            <td>
+                @item.Photo
+            </td>
+            <td>
+                @item.Budget
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,20 +1,38 @@
-﻿
-@model IEnumerable<WebMap.Models.ForumModels>
+﻿@using PagedList;
+@using PagedList.Mvc ;
+@model IPagedList<WebMap.Models.ForumModels>
+
 
 
 @{
-    Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
+
+                Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
 }
-@using (Html.BeginForm("ProjectInGivenTime", "Projet", FormMethod.Post))
-
-{ }
-
 
 @using (Html.BeginForm())
 {
+    <table>
+        <tr>
+            <td>
+                <div>
+
+                    Search By Category <input type="text" class="form-control" placeholder="Search" autofocus="" @Html.TextBox("search")
+
+
+                </div>
+            </td>
+            <td>
+                <input type="submit" value="search" id="recherche" class="btn btn-theme btn-block" />
+            </td>
+            @*<button type="button" class="btn btn-round btn-warning">Warning</button>*@
+        </tr>
+
+    </table>
 }
+
 <html>
 <body>
+
     <table class="table">
         <tr>
             <th>
@@ -51,11 +69,6 @@
                                                     <div class="mini-counts"><span title="0 votes">0</span></div>
                                                     <div>votes</div>
                                                 </div>
-                                            <th>
-                                                <div class="views">
-                                                    <div class="mini-counts"><span title="5 views">5</span></div>
-                                                    <div>views</div>
-                                                </div>
                                             </th>
                                         </div>
                     </tr>
@@ -74,7 +87,7 @@
                     <div class="tags t-nodeûjs t-promise">
 
 
-                        <a href="/questions/tagged/node.js" class="post-tag" title="" rel="tag"></a> <a href="/questions/tagged/promise" class="post-tag" title="" rel="tag"> @Html.DisplayFor(modelItem => item.Categorie)</a>
+                        <a href="/questions/tagged/node.js" class="post-tag" title="" rel="tag"></a> <a href="/questions/tagged/promise" class="post-tag" title="" rel="tag">Category: @Html.DisplayFor(modelItem => item.Categorie)</a>
                     </div>
                     <div class="started">
                         <a href="/questions/217001/how-to-avoid-nesting-promises/?lastactivity" class="started-link">
@@ -86,21 +99,113 @@
                         @*<a href="/users/93119/tomg"></a> <span class="reputation-score" title="reputation score " dir="ltr"> by @Html.DisplayFor(modelItem => item.Author)</span>*@
                     </div>
                 </div>
+                <td>
+                    <div class="button">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "Textgreen" }) |
 
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "Textred" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "darkslategrey" })
+                    </div>
+
+                </td>
                 <hr />
 
 
 
             </tr>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <td></td>
         </table>
-      
+
+
+
+        @*<div id="wrapper">
+                <div id="content">
+
+                    <div class="question_list">
+                        <span class="answers_total">
+                            <a href="">0 </a> Answers
+                        </span>
+                        <h3> <a href="" rel="bookmark" title="Permanent Link to Does this theme contains any serial key for activation ??">Does this theme contains any serial key for activation ??</a></h3>
+                        <p>
+                            <span class="user">Asked by: <strong><a href="https://demo.templatic.com/answers/author/naveed/" title="Posts by Naveed" rel="author">Naveed</a></strong> </span>
+                            <span class="views"><b>359 </b> views </span>
+                            <span class="ptags"><a href="https://demo.templatic.com/answers/tag/wordpress/" rel="tag">wordpress</a><br> </span>
+                            <span class="pcate"> <a href="https://demo.templatic.com/answers/category/uncategorized/" rel="category tag">Uncategorized</a> </span>
+                        </p>
+                    </div>
+                    <div class="pagination">
+                        <div class="Navi"><strong class="on">1</strong> <a href="https://demo.templatic.com/answers/page/2/">2</a> <a href="https://demo.templatic.com/answers/page/2/"><strong>»</strong></a></div>
+                    </div>
+                </div>
+            </div>*@
+
+        <style type="text/css">
+            .by_this_theme_fix {
+                display: none;
+            }
+
+            .Textred {
+                color: red;
+            }
+
+            .Textgreen {
+                color: green;
+            }
+
+            .Textdark {
+                color: darkslategrey;
+            }
+
+            .button {
+                float: right;
+            }
+
+            .votes {
+                background: #82b541;
+                float: left;
+                width: 65px;
+                height: 65px;
+                font-size: 14px;
+                text-align: center;
+                line-height: normal;
+                color: #fff;
+                margin-right: 25px;
+            }
+
+            .summary {
+                color: #da3131;
+                vertical-align: middle;
+            }
+
+            .by_this_theme_fix span {
+                font-size: 16px;
+                vertical-align: middle;
+            }
+
+            .by_this_theme_fix:hover {
+                background-color: #58da7d;
+                color: #fff;
+            }
+        </style>
+        <style>
+            .content {
+                width: 70%;
+                float: none;
+            }
+        </style>
+
+
     }
+    <div>
+
+        @Html.PagedListPager(Model, page => Url.Action("AllForum", new
+   {
+       page, AllForum = Request.QueryString["AllForum"],
+
+   }
+       ))
+    </div>
 </body>
 
 

@@ -82,7 +82,7 @@ namespace WebMap.Hubs
                 if (ImageName != "")
                     RetimgName = "/images/DP/" + ImageName;
             }
-            catch (Exception ex)
+            catch (Exception )
             { }
             return RetimgName;
         }

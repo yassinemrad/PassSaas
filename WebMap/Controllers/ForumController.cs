@@ -1,5 +1,6 @@
 ﻿using DomainMap.Entities;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using ServiceMap;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace WebMap.Controllers
     {
         ForumService fs = new ForumService();
         // GET: Forum
-        public ActionResult AllForum()
+        public ActionResult AllForum(int? page)
         {
-            var User = new User();
+            
             List<Models.ForumModels> lists = new List<Models.ForumModels>();
             foreach (var item in fs.GetAll())
             {
@@ -29,15 +30,13 @@ namespace WebMap.Controllers
 
                 dvm.Contenu = item.Contenu;
                 dvm.Date = DateTime.Now;
-                var user = User.UserName;
-                dvm.Author = user;
-                    
+                dvm.Author = User.Identity.Name;
                 dvm.Categorie = (WebMap.Models.Categorie)item.Categorie;
                 //dvm.Etat.Equals(item.Etat);
                 lists.Add(dvm);
 
             }
-            return View(lists);
+            return View((lists).ToPagedList(page ?? 1, 4));
             //var forum = fs.GetAll();
 
 
@@ -104,6 +103,31 @@ namespace WebMap.Controllers
 
             return RedirectToAction("AllForum");
         }
+        [HttpPost]
+        public ActionResult Index(string search)
+        {
+            List<ForumModels> list = new List<ForumModels>();
+            var a = fs.GetAll();
+            foreach (var i in a)
+            {
+                ForumModels avm = new ForumModels();
+                avm.Id= i.Id;
+                avm.Title = i.Title;
+              //  avm.Categorie = (WebMap.Models.Categorie)i.Categorie;
+
+           
+
+
+                list.Add(avm);
+
+            }
+            if (!String.IsNullOrEmpty(search))
+            {
+                list = list.Where(i => i.Title.Contains(search)/*Categorie.Equals(search)*/).ToList();
+            }
+
+            return View(list);/*.ToPagedList(page ?? 1,3)); */
+        }
 
         //  f.Id = forum.Id;
         //  f.Title = forum.Title;
@@ -115,19 +139,19 @@ namespace WebMap.Controllers
         //  fs.Add(f);
         //  fs.Commit();
         //  return RedirectToAction("AllForum");
-    
-    //Forum t = new Forum();
-    //t.Contenu = fa.Contenu;
-    //t.Title = fa.Title;
-    ////t.Categorie = fa.Categorie;
 
-    //fs.Add(t);
-    //fs.Commit();
+        //Forum t = new Forum();
+        //t.Contenu = fa.Contenu;
+        //t.Title = fa.Title;
+        ////t.Categorie = fa.Categorie;
 
-    //return RedirectToAction("AllForum");
+        //fs.Add(t);
+        //fs.Commit();
+
+        //return RedirectToAction("AllForum");
 
 
-    // GET: Forum/Edit/5
+        // GET: Forum/Edit/5
         public ActionResult Edit(int id)
         {
             var bib = fs.GetById(id);
@@ -193,14 +217,16 @@ namespace WebMap.Controllers
             //DomainMap.Entities.Projet d = new DomainMap.Entities.Projet() { cathegory = bib.cathegory };
 
             //bvm.cathegory = bib.cathegory;
-            bvm.Id = bib.Id;
+            //bvm.Id = bib.Id;
 
-            bvm.Title = bib.Title;
-            bvm.Date = bib.Date;
-            bvm.Author = bib.Author;
-            bvm.Contenu = bib.Contenu;
+            //bvm.Title = bib.Title;
+            //bvm.Date = bib.Date;
+            //bvm.Author = bib.Author;
+            //bvm.Contenu = bib.Contenu;
 
-            bvm.Categorie.Equals(bib.Categorie);
+            //bvm.Categorie.Equals(bib.Categorie);
+            fs.Delete(bib);
+            fs.Commit();
             return View(bvm);
         }
     }

@@ -1,7 +1,7 @@
 ﻿@model WebMap.Models.ForumModels
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,56 +12,13 @@
     <title>Details</title>
 </head>
 <body>
-
-    <div id="question-header" class="grid">
-        <h1 itemprop="name" class="grid--cell fs-headline1 fl1 ow-break-word"><a href="/questions/2906582/how-to-create-an-html-button-that-acts-like-a-link" class="question-hyperlink">How to create an HTML button that acts like a link?</a></h1>
-
-
         <div class="pl8 aside-cta grid--cell" role="navigation" aria-label="ask new question">
             <a href="/questions/ask" class="d-inline-flex ai-center ws-nowrap s-btn s-btn__primary">
                 Ask Question
             </a>
-        </div>
+        </div
 
-    </div>
-    <div class="post-layout">
-        <div class="votecell post-layout--left">
-
-
-            <div class="js-voting-container grid fd-column ai-stretch gs4 fc-black-200" data-post-id="2906582">
-                <button class="js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer" title="This question shows research effort; it is useful and clear" aria-pressed="false" aria-label="up vote" data-selected-classes="fc-theme-primary"><svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10z"></path></svg></button>
-                <div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" itemprop="upvoteCount" data-value="1592">1592</div>
-                <button class="js-vote-down-btn grid--cell s-btn s-btn__unset c-pointer" title="This question does not show any research effort; it is unclear or not useful" aria-pressed="false" aria-label="down vote" data-selected-classes="fc-theme-primary"><svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg></button>
-
-                <button class="js-favorite-btn s-btn s-btn__unset c-pointer py8" aria-pressed="false" aria-label="favorite (384)" data-selected-classes="fc-yellow-600" title="Click to mark as favorite question (click again to undo)">
-                    <svg aria-hidden="true" class="svg-icon iconStar" width="18" height="18" viewBox="0 0 18 18"><path d="M9 12.65l-5.29 3.63 1.82-6.15L.44 6.22l6.42-.17L9 0l2.14 6.05 6.42.17-5.1 3.9 1.83 6.16z"></path></svg>
-                    <div class="js-favorite-count mt8" data-value="384">384</div>
-                </button>
-
-
-            </div>
-            <div class="postcell post-layout--right">
-
-                <div class="post-text" itemprop="text">
-
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Title)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.Contenu)
-                        </dd>
-                        <p>I would also like it so there aren't any extra characters, or parameters in the URL.</p>
-
-                        <p>How can I achieve this?</p>
-
-                        <hr>
-
-                        <p>Based on the answers posted so far, I am currently doing this:</p>
-
-
-                        @*<div>
+                        <div>
                 <h4>ForumModels</h4>
                 <hr />
                 <dl class="dl-horizontal">
@@ -93,15 +50,15 @@
                         @Html.DisplayNameFor(model => model.Contenu)
                     </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Contenu)
-                    </dd>
+                   
+                        @Html.Raw(model => i.Contenu)
+                    
 
                 </dl>
             </div>
             <p>
                 @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-                @Html.ActionLink("Back to List", "Index")
-            </p>*@
+                @Html.ActionLink("Back to List", "AllForum")
+            </p>
 </body>
 </html>
