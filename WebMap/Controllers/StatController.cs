@@ -29,11 +29,7 @@ namespace WebMap.Controllers
 
 
         // GET: Stat
-        public ActionResult Index()
-        {
-
-            return View();
-        }
+    
         // GET : Home
         public ActionResult Home()
         {

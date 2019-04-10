@@ -83,7 +83,7 @@ namespace WebMap
         public SqlDataAdapter sda;
         public SqlDataReader sdr;
         public DataSet ds = new DataSet();
-        public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MapDb"].ToString());
+        public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["paassaas"].ToString());
         
         public bool IsExist(string Query)
         {
