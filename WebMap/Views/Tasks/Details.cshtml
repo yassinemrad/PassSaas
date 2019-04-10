@@ -4,9 +4,11 @@
 }
 
 <div>
-
+    @using (Html.BeginForm("Changestatus", "Tasks", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
     <dl class="room-box">
         <h5 class="text-primary"><a href="chat_room.html">Détails</a></h5>
+        @Html.HiddenFor(model=> model.id)
         <dt>
             @Html.DisplayNameFor(model => model.name)
         </dt>
@@ -40,20 +42,34 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.estimation)
+            @Html.DisplayNameFor(model => model.nmod)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.estimation)
+            @Html.DisplayFor(model => model.nmod)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.realDuration)
-        </dt>
+        @{
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            listItems.Add(new SelectListItem
+            {
+                Text = "To do",
+                Value = "0",
+            });
+            listItems.Add(new SelectListItem
+            {
+                Text = "Doing",
+                Value = "1",
 
-        <dd>
-            @Html.DisplayFor(model => model.realDuration)
-        </dd>
+            });
+            listItems.Add(new SelectListItem
+            {
+                Text = "Done",
+                Value = "2",
+            });
+        }
+        @Html.DropDownListFor(model => model.etat, listItems, "-- Select Status --")
+        <input type="submit" value="Marquer" class="btn btn-primary" />
 
     </dl>
+    }
 </div>
