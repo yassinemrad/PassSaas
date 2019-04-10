@@ -4,6 +4,7 @@ using ServicePattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,8 +76,66 @@ namespace ServiceMap
             var z = (double)aut / x * 100;
             return z;
         }
+
+
+
+
+        public IEnumerable<Projet> listprojet()
+        {
+            var v = GetAll();
+
+            return v;
+
+        }
+        public IEnumerable<Projet> getNonDelivredProject() //obtenir un projet non livré
+        {
+            return unit.getRepository<Projet>().GetMany(p => p.endDate > DateTime.Now).ToList();
+
+        }
+        public IEnumerable<Projet> getDelivredProject() //obtenir un projet livré
+        {
+            return unit.getRepository<Projet>().GetMany(p => p.endDate <= DateTime.Now).ToList();
+        }
+        public IEnumerable<Projet> getProjectInDate(DateTime start, DateTime end) //Obtenir la date du projet
+        {
+            return unit.getRepository<Projet>().GetMany(p => p.startDate >= start && p.endDate <= end).ToList();
+        }
+        public IEnumerable<Projet> getMostExpensiveProject()             //obtenir le projet le plus cher
+
+        {
+            return unit.getRepository<Projet>().GetAll().OrderByDescending(p => p.Budget).Take(3).ToList();
+        }
+        public IEnumerable<ProjectBudget> Get6MostCostlyProjectsForATeamLeader(TeamLeader e)
+        //Obtenez 6 projets les plus chers pour un chef d'équipe
+        {
+            return GetAll()
+
+
+                .ToList()
+                .OrderByDescending(GP => GP.Budget)
+                .Take(6)
+                .Select(GP => new ProjectBudget
+                {
+                    ProjectName = GP.name,
+                    Budget = GP.Budget
+                }).ToList();
+        }
+
+        public float progressProject(int id)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    [DataContract(IsReference = true)]
+    public class ProjectBudget
+    {
+        [DataMember]
+        public string ProjectName { get; set; }
+        [DataMember]
+        public float Budget { get; set; }
     }
 }
+
 
     
 
