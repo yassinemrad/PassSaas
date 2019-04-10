@@ -647,7 +647,6 @@
     <Content Include="Views\Tasks\Details.cshtml" />
     <Content Include="Views\Module\Create.cshtml" />
     <Content Include="Views\Module\Index.cshtml" />
-    <Content Include="Views\Stat\Index.cshtml" />
     <Content Include="Views\Forum\AllForum.cshtml" />
     <Content Include="Views\Forum\cc.cshtml" />
     <Content Include="Views\Forum\Create.cshtml" />

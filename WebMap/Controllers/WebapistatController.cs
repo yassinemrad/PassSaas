@@ -27,7 +27,7 @@ namespace WebMap.Controllers
             List<DataPoint> dataPoints = new List<DataPoint>();
             Dictionary<String, int> tempDic = new Dictionary<String, int>();
             TasksService taskService = new TasksService();
-            tempDic = taskService.EtatCount();
+            tempDic = taskService.EtatCount(1);
             foreach (var element in tempDic)
             {
                 dataPoints.Add(new DataPoint(element.Key, element.Value));

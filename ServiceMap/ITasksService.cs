@@ -10,7 +10,7 @@ namespace ServiceMap
 {
   public  interface ITasksService : IServicePattern<Tasks>
     {
-        Dictionary<String, int> EtatCount();
+        Dictionary<String, int> EtatCount(int idProjet);
         IEnumerable<Tasks> listtache();
         int listtacs(Etat e, int idProjet);
         double EtatProgresstodo(int idProjet);

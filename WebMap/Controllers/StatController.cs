@@ -35,18 +35,21 @@ namespace WebMap.Controllers
             return View();
         }
         // GET : Home
-        public ActionResult Home()
+        public ActionResult Home(int id=1)
+
         {
+            List<ProjetModels> listP = mapi();
             List<DataPoint> dataPoints = new List<DataPoint>();
             Dictionary<String, int> tempDic = new Dictionary<String, int>();
 
-            tempDic = taskService.EtatCount();
+            tempDic = taskService.EtatCount(id);
             foreach (var element in tempDic)
             {
                 dataPoints.Add(new DataPoint(element.Key, element.Value));
             }
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+            ViewBag.ListProjets = listP;
 
             return View();
         }
@@ -239,22 +242,22 @@ namespace WebMap.Controllers
             }
             return RedirectToAction("categparprojet");
         }
-        public ActionResult Home2()
-        {
-            List<DataPoint> dataPoints = new List<DataPoint>();
-            Dictionary<String, int> tempDic = new Dictionary<String, int>();
+        //public ActionResult Home2()
+        //{
+        //    List<DataPoint> dataPoints = new List<DataPoint>();
+        //    Dictionary<String, int> tempDic = new Dictionary<String, int>();
 
-            tempDic = taskService.EtatCount();
-            foreach (var element in tempDic)
-            {
-                dataPoints.Add(new DataPoint(element.Key, element.Value));
-            }
+        //    tempDic = taskService.EtatCount();
+        //    foreach (var element in tempDic)
+        //    {
+        //        dataPoints.Add(new DataPoint(element.Key, element.Value));
+        //    }
 
-            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+        //    ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
-            return PartialView("_Home2");
+        //    return PartialView("_Home2");
 
-        }
+        //}
         public ActionResult usercount2()
         {
             Dictionary<String, Dictionary<String, int>> diccount = taskService.etatCountUser();

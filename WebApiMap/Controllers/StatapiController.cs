@@ -17,9 +17,9 @@ namespace WebApiMap.Controllers
         IProjetService ps = new ProjetService();
 
         // GET: api/Statapi
-        public Dictionary<String, int> Get()
+        public Dictionary<String, int> Get(int id)
         {
-            return ts.EtatCount();
+            return ts.EtatCount(id);
             //  return us.listtache().AsQueryable() ;
 
             //   return new string[] { "value1", "value2" };

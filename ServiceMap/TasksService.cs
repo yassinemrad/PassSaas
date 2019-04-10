@@ -19,12 +19,12 @@ namespace ServiceMap
 
         {
         }
-        public Dictionary<String, int> EtatCount()
+        public Dictionary<String, int> EtatCount(int idProjet)
         {
             Dictionary<String, int> etatDic = new Dictionary<string, int>();
-            var toDoCount = GetMany(t => (t.etat == Etat.ToDo)).Count();
-            var doingCount = GetMany(t => (t.etat == Etat.Doing)).Count();
-            var doneCount = GetMany(t => (t.etat == Etat.Done)).Count();
+            var toDoCount = GetMany(t => (t.etat == Etat.ToDo) && (t.modules.projet.id == idProjet)).Count();
+            var doingCount = GetMany(t => (t.etat == Etat.Doing) && (t.modules.projet.id == idProjet)).Count();
+            var doneCount = GetMany(t => (t.etat == Etat.Done) && (t.modules.projet.id == idProjet)).Count();
             etatDic.Add(Etat.ToDo.ToString(), toDoCount);
             etatDic.Add(Etat.Doing.ToString(), doingCount);
             etatDic.Add(Etat.Done.ToString(), doneCount);
