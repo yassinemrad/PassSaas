@@ -12,6 +12,12 @@
     <title>Index</title>
 </head>
 <body>
+    <form asp-controller="Tasks" asp-action="AllTasks">
+        <p>
+            @Html.TextBox("searchString")
+            <input type="submit" value="Rechercher" id="recherche" />
+        </p>
+    </form>
 
     <table class="table">
         <tr>
@@ -22,16 +28,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.description)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.nuser)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.date)
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.idmodul)
+                @Html.DisplayNameFor(model => model.diff)
             </th>
 
-
+            <th>
+                @Html.DisplayNameFor(model => model.rest)
+            </th>
             <th></th>
         </tr>
 
@@ -45,19 +55,24 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.description)
                 </td>
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.nuser)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.date)
                 </td>
-
                 <td>
-                    @Html.DisplayFor(modelItem => item.idmodul)
+                    @Html.DisplayFor(modelItem => item.diff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rest)
                 </td>
 
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                 
                 </td>
             </tr>
         }

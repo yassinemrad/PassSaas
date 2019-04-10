@@ -11,7 +11,7 @@ namespace DomainMap.Entities
     public enum Etat { ToDo, Doing, Done }
     public class Tasks
     {
-
+     
         [Key]
         public int id { get; set; }
         [Display(Name = "Nom du Tache")]
@@ -32,6 +32,7 @@ namespace DomainMap.Entities
         [Display(Name = "Etat du Tache")]
         public Etat etat { get; set; }
         public Module modules { get; set; }
+        public int iduserAffect { get; set; }
         public int iduser { get; set; }
         public int idmodul { get; set; }
         public int idprojet { get; set; }

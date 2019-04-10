@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebMap.Models
 {
@@ -36,11 +37,23 @@ namespace WebMap.Models
         [Display(Name = "Etat du Tache")]
         public Etat etat { get; set; }
         public Module modules { get; set; }
+        [Display(Name = "Affecté un utilisateur")]
         public int iduser { get; set; }
         public int idmodul { get; set; }
+        public int iduserAffect { get; set; }
         public int idprojet { get; set; }
+        [Display(Name = "cette Tache doit étre terminer dans ")]
+        public String diff { get; set; }
+        [Display(Name = "Il vous reste seulement ")]
+        public String rest { get; set; }
+        [Display(Name = "Nom responsable du module ")]
+        public String nuser { get; set; }
+        [Display(Name = "Nom de Module ")]
+        public String nmod { get; set; }
         public User user { get; set; }
-
+        [Display(Name = "l'utilisateur qui a le minimum des taches")]
+        public int nbsome { get; set; }
+        public IEnumerable<SelectListItem> Users { get; set; }
 
     }
 }

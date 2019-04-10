@@ -1,44 +1,49 @@
-﻿@model IEnumerable<WebMap.Models.TasksModels>
-
+﻿@model WebMap.Models.Model
 @{
     Layout = "~/Views/Shared/_MyTemplatepage.cshtml";
 }
-
-
-
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.nuser)
+            <b>Nom du tache</b>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nmod)
+            <b>Nom du Module</b>
         </th>
-        <th></th>
+        <th>
+            <b>Affecter un uilisateur à cette tache</b>
+        </th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.tasks)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
+    <tr>
+        <td>
+            @Html.HiddenFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.nuser)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nmod)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-            </td>
-        </tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nmod)
+        </td>
+        <td>
+            @using (Html.BeginForm("ListUsersNonAffection", "Tasks", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+
+                @Html.HiddenFor(model => item.id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => item.iduserAffect, item.Users)
+                <input type="submit" value="Affecter" class="btn btn-primary" />
+
+            }
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nbsome)
+        </td>
+    </tr>
     }
 
 </table>
