@@ -22,7 +22,7 @@ namespace DataMap
         {
             Database.SetInitializer<MyContext>(null);
         }
-        public MyContext() : base("name=paassaas")
+        public MyContext() : base("name=MapDb")
         {
             TPHUser tphu = new TPHUser();
            
